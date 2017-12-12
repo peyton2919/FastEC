@@ -29,9 +29,9 @@ import cn.peyton.android.latte.core.ui.banner.BannerCreator;
  * 版本 1.0.0
  */
 
-public class MultipleRecyclerAdapter extends BaseMultiItemQuickAdapter<MultipleItemEntity, MultipleViewHolder>
-        implements BaseQuickAdapter.SpanSizeLookup,
-        OnItemClickListener{
+public class MultipleRecyclerAdapter extends
+        BaseMultiItemQuickAdapter<MultipleItemEntity, MultipleViewHolder>
+        implements BaseQuickAdapter.SpanSizeLookup, OnItemClickListener{
 
     //确保初始化一次Banner ,防止重复Item加载
     private boolean mIsInitBanner = false;
