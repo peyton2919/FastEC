@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">FestEC</string>
+    <string name="example_delegate">example delegate</string>
+    <string name="wx_d_wxhd">微信回调</string>
+</resources>
