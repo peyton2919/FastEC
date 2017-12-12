@@ -72,7 +72,6 @@ public class MultipleRecyclerAdapter extends BaseMultiItemQuickAdapter<MultipleI
                         .load(imageUrl)
                         .apply(REQUEST_OPTIONS)
                         .into((ImageView) holder.getView(R.id.img_single));
-
                 break;
             case ItemType.TEXT_IMAGE:
                 text = entity.getField(MultipleFields.TEXT);

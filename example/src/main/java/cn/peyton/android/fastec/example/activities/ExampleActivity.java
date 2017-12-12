@@ -13,6 +13,7 @@ import cn.peyton.android.latte.core.ui.launcher.OnLauncherFinishTag;
 import cn.peyton.android.latte.ec.main.EcBottomDelegate;
 import cn.peyton.android.latte.ec.sign.ISignListener;
 import cn.peyton.android.latte.ec.sign.SignInDelegate;
+import qiu.niorgai.StatusBarCompat;
 
 public class ExampleActivity extends ProxyActivity implements
             ISignListener,ILauncherListener{
@@ -25,6 +26,8 @@ public class ExampleActivity extends ProxyActivity implements
         }
         //全局Activity 放到配置信息里
         Latte.getConfigurator().withActivity(this);
+        //去除状态栏
+        StatusBarCompat.translucentStatusBar(this,true);
 
     }
 

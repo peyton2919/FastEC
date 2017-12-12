@@ -2,6 +2,7 @@ package cn.peyton.android.latte.ec.main.index;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.GridLayoutManager;
@@ -13,9 +14,11 @@ import com.joanzapata.iconify.widget.IconTextView;
 
 import butterknife.BindView;
 import cn.peyton.android.latte.core.fragment.delegates.bottom.BottomItemDelegate;
+import cn.peyton.android.latte.core.ui.recycler.BaseDecoration;
 import cn.peyton.android.latte.core.ui.refresh.RefreshHandler;
 import cn.peyton.android.latte.ec.R;
 import cn.peyton.android.latte.ec.R2;
+import cn.peyton.android.latte.ec.main.EcBottomDelegate;
 
 /**
  * <pre>
@@ -58,9 +61,6 @@ public class IndexDelegate extends BottomItemDelegate{
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
         mRefreshHandler = RefreshHandler.create(mRefreshLayout,mRecyclerView,new IndexDataConverter());
-        //TODO
-
-
     }
 
     @Override
@@ -77,6 +77,10 @@ public class IndexDelegate extends BottomItemDelegate{
         //风格布局
         final GridLayoutManager manager = new GridLayoutManager(getContext(), 4);
         mRecyclerView.setLayoutManager(manager);
+        mRecyclerView.addItemDecoration(BaseDecoration.create(ContextCompat.getColor(getContext(),R.color.app_background),5));
+        //TODO
+        final EcBottomDelegate ecBottomDelegate = getParentDelegate();
+        mRecyclerView.addOnItemTouchListener(IndexItemClickListener.create(ecBottomDelegate));
     }
 
 
@@ -88,6 +92,6 @@ public class IndexDelegate extends BottomItemDelegate{
                 android.R.color.holo_red_light
         );
         //设置位置
-        mRefreshLayout.setProgressViewOffset(true,150,350);
+        mRefreshLayout.setProgressViewOffset(true,120,300);
     }
 }

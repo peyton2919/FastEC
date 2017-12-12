@@ -14,4 +14,14 @@ package cn.peyton.android.latte.core.fragment.delegates;
  */
 public abstract class LatteDelegate extends PermissionCheckedDelegate {
 
+
+    /**
+     * 获取父Delegate
+     * @param <T>
+     * @return
+     */
+    @SuppressWarnings("unchecked")
+    public <T extends LatteDelegate> T getParentDelegate() {
+        return (T) getParentFragment();
+    }
 }
