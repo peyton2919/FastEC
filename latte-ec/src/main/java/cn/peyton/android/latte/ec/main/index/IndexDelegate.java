@@ -21,21 +21,20 @@ import cn.peyton.android.latte.ec.R2;
 import cn.peyton.android.latte.ec.main.EcBottomDelegate;
 
 /**
+ * <h3>index Delegate 类</h3>
  * <pre>
- *
- * </pre>
- * <p>
  * 作者 <a href="http://www.peyton.cn">peyton</a>
  * 邮箱 <a href="mailto:fz2919@tom.com">fz2919@tom.com</a>
  * 类全名 cn.peyton.android.latte.ec.main.index.IndexDelegate
  * 项目名 FestEC
  * 创建时间 2017-12-04 13:04
  * 版本 1.0.0
+ * </pre>
  */
 public class IndexDelegate extends BottomItemDelegate{
-
+    /** 申明刷新Handler */
     private RefreshHandler mRefreshHandler = null;
-
+    //==================  视图绑定 开始 =====================
     @BindView(R2.id.rv_index)
     RecyclerView mRecyclerView = null;
     @BindView(R2.id.srl_index)
@@ -49,7 +48,7 @@ public class IndexDelegate extends BottomItemDelegate{
     AppCompatEditText mSearchView = null;
     @BindView(R2.id.icon_index_message)
     IconTextView mIndexMessage = null;
-
+    //==================  视图绑定 结束 =====================
 
 
     @Override
@@ -63,6 +62,10 @@ public class IndexDelegate extends BottomItemDelegate{
         mRefreshHandler = RefreshHandler.create(mRefreshLayout,mRecyclerView,new IndexDataConverter());
     }
 
+    /**
+     * 懒加载视图
+     * @param savedInstanceState
+     */
     @Override
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
         super.onLazyInitView(savedInstanceState);
@@ -72,7 +75,9 @@ public class IndexDelegate extends BottomItemDelegate{
         mRefreshHandler.firstPage("o2o/api/fastec");
     }
 
-    //初始化RecyclerView布局
+    /**
+     * 初始化RecyclerView布局
+     */
     private void initRecyclerView() {
         //风格布局
         final GridLayoutManager manager = new GridLayoutManager(getContext(), 4);
@@ -83,7 +88,9 @@ public class IndexDelegate extends BottomItemDelegate{
         mRecyclerView.addOnItemTouchListener(IndexItemClickListener.create(ecBottomDelegate));
     }
 
-
+    /**
+     * 初始化刷新Layout
+     */
     private void initRefreshLayout() {
         //设置颜色
         mRefreshLayout.setColorSchemeResources(

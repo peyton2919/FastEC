@@ -20,16 +20,15 @@ import retrofit2.http.Streaming;
 import retrofit2.http.Url;
 
 /**
+ * <h3>RxRest 网络请求 接口</h3>
  * <pre>
- *
- * </pre>
- * <p>
  * 作者 <a href="http://www.peyton.cn">peyton</a>
  * 邮箱 <a href="mailto:fz2919@tom.com">fz2919@tom.com</a>
  * 类全名 cn.peyton.android.latte.core.net.rx.RxRestService
  * 项目名 FestEC
  * 创建时间 2017-12-04 12:36
  * 版本 1.0.0
+ * </pre>
  */
 public interface RxRestService {
 

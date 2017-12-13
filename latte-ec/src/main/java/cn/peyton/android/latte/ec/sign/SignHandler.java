@@ -8,16 +8,15 @@ import cn.peyton.android.latte.ec.database.DatabaseManager;
 import cn.peyton.android.latte.ec.database.UserProfile;
 
 /**
+ * <h3>登录 处理者</h3>
  * <pre>
- *  Sign 处理者
- * </pre>
- * <p>
  * 作者 <a href="http://www.peyton.cn">peyton</a>
  * 邮箱 <a href="mailto:fz2919@tom.com">fz2919@tom.com</a>
  * 类全名 cn.peyton.android.latte.ec.sign.SignHandler
  * 项目名 FestEC
  * 创建时间 2017-12-04 21:57
  * 版本 1.0.0
+ * </pre>
  */
 public class SignHandler {
 

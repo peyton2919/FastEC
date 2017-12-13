@@ -1,16 +1,16 @@
 package cn.peyton.android.latte.core.util.log;
 
+import com.orhanobut.logger.DiskLogAdapter;
 import com.orhanobut.logger.Logger;
 
 /**
+ * <h3>日志类</h3>
  * <pre>
- *  日志类
- * </pre>
- * 
  * 作者 <a href="http://www.peyton.cn">peyton</a>
  * 邮箱 <a href="mailto:fz2919@tom.com">fz2919@tom.com</a>
  * 创建时间 2017-12-04 18:50
  * 版本 1.0.0
+ * </pre>
  */
 public final class LatteLogger {
 
@@ -64,5 +64,19 @@ public final class LatteLogger {
         if (LEVEL <= ERROR) {
             Logger.t(tag).e(message);
         }
+    }
+
+    /**
+     * 保存到磁盘
+     */
+    public static void saveDisk() {
+//        FormatStrategy formatStrategy = PrettyFormatStrategy.newBuilder()
+//                .showThreadInfo(false)//（可选）是否显示线程信息。 默认值为true
+//                .methodCount(2)   // （可选）要显示的方法行数。 默认2
+//                .methodOffset(7) // （可选）隐藏内部方法调用到偏移量。 默认5
+//                //.logStrategy(logcat) //（可选）更改要打印的日志策略。 默认LogCat
+//                .tag("POWER") //（可选）每个日志的全局标记。 默认PRETTY_LOGGER
+//                .build();
+        Logger.addLogAdapter(new DiskLogAdapter());
     }
 }

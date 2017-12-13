@@ -13,16 +13,15 @@ import cn.peyton.android.latte.ec.main.index.IndexDelegate;
 import cn.peyton.android.latte.ec.main.sort.SortDelegate;
 
 /**
+ * <h3>基础Bottom Delegate类</h3>
  * <pre>
- *
- * </pre>
- * <p>
  * 作者 <a href="http://www.peyton.cn">peyton</a>
  * 邮箱 <a href="mailto:fz2919@tom.com">fz2919@tom.com</a>
- * 创建时间 ${date} ${time}
+ * 完整类名 cn.peyton.android.latte.ec.main.EcBottomDelegate
+ * 创建时间 2017/12/13 17:17
  * 版本 1.0.0
+ * </pre>
  */
-
 public class EcBottomDelegate extends BaseBottomDelegate{
 
     @Override

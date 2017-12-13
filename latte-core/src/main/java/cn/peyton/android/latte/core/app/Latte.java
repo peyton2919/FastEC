@@ -4,16 +4,15 @@ import android.content.Context;
 import android.os.Handler;
 
 /**
+ * <h3>库程序入口 供外部调用类</h3>
  * <pre>
- *  库程序入口 供外部调用类
- * </pre>
- *
  * 作者 <a href="http://www.peyton.cn">peyton</a>
  * 邮箱 <a href="mailto:fz2919@tom.com">fz2919@tom.com</a>
  * 类全名 cn.peyton.android.latte.core.app.Latte
  * 项目名 FestEC
  * 创建时间 2017-12-01 - 11:01
  * 版本 1.0.0
+ * </pre>
  */
 @SuppressWarnings("ALL")
 public final class Latte {
@@ -44,6 +43,12 @@ public final class Latte {
         return Configurator.getInstance();
     }
 
+    /**
+     * 获取对象
+     * @param key 键
+     * @param <T> 值
+     * @return 泛型对象
+     */
     public static <T> T getConfiguration(Object key) {
         return getConfigurator().getConfiguration(key);
     }
@@ -57,6 +62,10 @@ public final class Latte {
         return getConfiguration(ConfigKeys.APPLICATION_CONTEXT);
     }
 
+    /**
+     * 获取 Handler对象
+     * @return Handler对象
+     */
     public static Handler getHandler() {
         return getConfiguration(ConfigKeys.HANDLER);
     }

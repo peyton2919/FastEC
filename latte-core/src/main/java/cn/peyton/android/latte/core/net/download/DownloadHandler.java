@@ -15,16 +15,15 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
+ * <h3>文件下载Handler 类</h3>
  * <pre>
- *  文件下载
- * </pre>
- * <p>
  * 作者 <a href="http://www.peyton.cn">peyton</a>
  * 邮箱 <a href="mailto:fz2919@tom.com">fz2919@tom.com</a>
  * 类全名 cn.peyton.android.latte.core.net.download.DownloadHandler
  * 项目名 FestEC
  * 创建时间 2017-12-03 14:30
  * 版本 1.0.0
+ * </pre>
  */
 public class DownloadHandler {
 
@@ -71,6 +70,9 @@ public class DownloadHandler {
         this.FAILURE = failure;
     }
 
+    /**
+     * 文件下载
+     */
     public final void handleDownload() {
         if (null != REQUEST) {
             REQUEST.onRequestStart();
@@ -81,6 +83,7 @@ public class DownloadHandler {
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         if (response.isSuccessful()) {
                             final ResponseBody responseBody = response.body();
+                            //调用保存文件任务
                             final SaveFileTask task = new SaveFileTask(REQUEST, SUCCESS);
                             task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, DOWNLOAD_DIR, EXTENSION, responseBody, NAME);
                             //一定要注意判断,否则文件下载不全

@@ -12,16 +12,15 @@ import cn.peyton.android.latte.core.ui.recycler.RGBValue;
 import cn.peyton.android.latte.ec.R;
 
 /**
+ * <h3>半透明 Behavior类{Toolbar}</h3>
  * <pre>
- *
- * </pre>
- * <p>
  * 作者 <a href="http://www.peyton.cn">peyton</a>
  * 邮箱 <a href="mailto:fz2919@tom.com">fz2919@tom.com</a>
- * 创建时间 ${date} ${time}
+ * 完整类名 cn.peyton.android.latte.ec.main.index.TranslucentBehavior
+ * 创建时间 2017/12/13 17:25
  * 版本 1.0.0
+ * </pre>
  */
-
 @SuppressWarnings("ALL")
 public class TranslucentBehavior extends CoordinatorLayout.Behavior<Toolbar> {
     /** 顶部距离 */
@@ -31,6 +30,11 @@ public class TranslucentBehavior extends CoordinatorLayout.Behavior<Toolbar> {
     /** 定义变化颜色 */
     private final RGBValue RGB_VALUE =RGBValue.create(255,124,2);
 
+    /**
+     * 构造函数
+     * @param context 上下文对象
+     * @param attrs AttributeSet对象
+     */
     public TranslucentBehavior(Context context, AttributeSet attrs) {
         super(context, attrs);
     }

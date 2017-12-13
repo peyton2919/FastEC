@@ -13,23 +13,21 @@ import cn.peyton.android.latte.core.net.callback.ISuccess;
 import cn.peyton.android.latte.core.util.log.LatteLogger;
 
 /**
+ * <h3>基础微信入口 Activity 类</h3>
  * <pre>
- * 微信登录
- * </pre>
- * <p>
  * 作者 <a href="http://www.peyton.cn">peyton</a>
  * 邮箱 <a href="mailto:fz2919@tom.com">fz2919@tom.com</a>
  * 类全名 cn.peyton.android.latte.core.wechat.LatteWeChat.BaseWXEntryActivity
  * 项目名 FestEC
  * 创建时间 2017-12-05 23:18
  * 版本 1.0.0
+ * </pre>
  */
 public abstract class BaseWXEntryActivity extends BaseWXActivity {
 
-
     /**
-     * 用户登录成功后回调
-     * @param userInfo
+     * 用户登录成功后回调 { 指定子类调用 }
+     * @param userInfo 用户信息
      */
     protected abstract void onSignInSuccess(String userInfo);
 
@@ -55,7 +53,10 @@ public abstract class BaseWXEntryActivity extends BaseWXActivity {
 
     }
 
-
+    /**
+     * 获取用户信息
+     * @param authUrl 获取用户信息链接
+     */
     private void getAuth(String authUrl) {
         RestClient.builder()
                 .url(authUrl)
@@ -81,7 +82,10 @@ public abstract class BaseWXEntryActivity extends BaseWXActivity {
                 .get();
     }
 
-    //获取用户真正信息
+    /**
+     * 获取用户真正信息
+     * @param userInfoUrl 获取用户真正信息链接
+     */
     private void getUserInfo(String userInfoUrl) {
         RestClient.builder()
                 .url(userInfoUrl)

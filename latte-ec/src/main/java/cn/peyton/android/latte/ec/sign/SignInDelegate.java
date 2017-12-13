@@ -22,19 +22,18 @@ import cn.peyton.android.latte.ec.R;
 import cn.peyton.android.latte.ec.R2;
 
 /**
+ * <h3>登录 Delegate 类</h3>
  * <pre>
- *  登录页面
- * </pre>
- * <p>
  * 作者 <a href="http://www.peyton.cn">peyton</a>
  * 邮箱 <a href="mailto:fz2919@tom.com">fz2919@tom.com</a>
  * 类全名 cn.peyton.android.latte.ec.sign.SignInDelegate
  * 项目名 FestEC
  * 创建时间 2017-12-04 17:14
  * 版本 1.0.0
+ * </pre>
  */
 public class SignInDelegate extends LatteDelegate{
-
+    /** 登录监听接口 */
     private ISignListener mISignListener = null;
 
     @BindView(R2.id.edit_signin_email)
@@ -74,7 +73,10 @@ public class SignInDelegate extends LatteDelegate{
             //Toast.makeText(getContext(),"验证通过",Toast.LENGTH_LONG).show();
         }
     }
-    //点击微信图标
+
+    /**
+     * 点击微信图标
+     */
     @OnClick(R2.id.itv_signin_we_chat)
     void onClickWeChat() {
         System.out.println("点击了微信图标");

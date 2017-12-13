@@ -20,16 +20,15 @@ import retrofit2.http.Streaming;
 import retrofit2.http.Url;
 
 /**
+ * <h3>Rest 网络请求 接口</h3>
  * <pre>
- *  Rest 网络请求接口
- * </pre>
- *
  * 作者 <a href="http://www.peyton.cn">peyton</a>
  * 邮箱 <a href="mailto:fz2919@tom.com">fz2919@tom.com</a>
  * 类全名 cn.peyton.android.latte.core.net.RestService
  * 项目名 FestEC
  * 创建时间 2017-12-03 9:56
  * 版本 1.0.0
+ * </pre>
  */
 @SuppressWarnings("JavaDoc")
 public interface RestService {

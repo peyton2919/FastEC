@@ -12,29 +12,37 @@ import cn.peyton.android.latte.core.net.RestClient;
 import cn.peyton.android.latte.core.net.callback.ISuccess;
 import cn.peyton.android.latte.core.ui.recycler.DataConverter;
 import cn.peyton.android.latte.core.ui.recycler.MultipleRecyclerAdapter;
-
 /**
+ * <h3>刷新 Handler 类</h3>
  * <pre>
- *
- * </pre>
- * <p>
  * 作者 <a href="http://www.peyton.cn">peyton</a>
  * 邮箱 <a href="mailto:fz2919@tom.com">fz2919@tom.com</a>
- * 创建时间 ${date} ${time}
+ * 完整类名 cn.peyton.android.latte.core.ui.refresh.RefreshHandler
+ * 创建时间 2017/12/13 15:29
  * 版本 1.0.0
+ * </pre>
  */
-
 public class RefreshHandler implements
         SwipeRefreshLayout.OnRefreshListener,
         BaseQuickAdapter.RequestLoadMoreListener{
-
+    /** 申明SwipeRefreshLayout 对象 */
     private final SwipeRefreshLayout REFRESH_LAYOUT;
+    /** 申明 分页对象 */
     private final PagingBean BEAN;
+    /** 循环视图 */
     private final RecyclerView RECYCLERVIEW;
+    /**  申明MultipleRecyclerAdapter 对象 */
     private MultipleRecyclerAdapter mAdapter = null;
+    /**  申明 DataConverter 对象 */
     private final DataConverter CONVERTER;
 
-
+    /**
+     * 私有构造函数
+     * @param swipeRefreshLayout SwipeRefreshLayout 对象
+     * @param recyclerView RecyclerView对象
+     * @param converter DataConverter对象
+     * @param bean 分页对象
+     */
     private RefreshHandler(SwipeRefreshLayout swipeRefreshLayout,
                           RecyclerView recyclerView, DataConverter converter,
                           PagingBean bean){
@@ -45,12 +53,21 @@ public class RefreshHandler implements
         REFRESH_LAYOUT.setOnRefreshListener(this);
     }
 
+    /**
+     * 创建 RefreshHandler对象
+     * @param swipeRefreshLayout SwipeRefreshLayout 对象
+     * @param recyclerView RecyclerView对象
+     * @param converter DataConverter对象
+     * @return
+     */
     public static RefreshHandler create(SwipeRefreshLayout swipeRefreshLayout,
                                         RecyclerView recyclerView, DataConverter converter) {
         return new RefreshHandler(swipeRefreshLayout, recyclerView, converter, new PagingBean());
     }
 
-
+    /**
+     * 刷新
+     */
     private void refresh() {
         REFRESH_LAYOUT.setRefreshing(true);
         Latte.getHandler().postDelayed(new Runnable() {
@@ -67,6 +84,10 @@ public class RefreshHandler implements
         refresh();
     }
 
+    /**
+     * 第一次加载页面
+     * @param url 链接地址
+     */
     public void firstPage(String url) {
         BEAN.setDelayed(1000);
         RestClient.builder()

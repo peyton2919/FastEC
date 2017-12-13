@@ -14,16 +14,15 @@ import java.util.HashMap;
 import okhttp3.Interceptor;
 
 /**
+ * <h3>全局配置信息类{ 配置文件存储和获取}</h3>
  * <pre>
- *  配置信息类{ 配置文件存储和获取 }
- * </pre>
- *
  * 作者 <a href="http://www.peyton.cn">peyton</a>
  * 邮箱 <a href="mailto:fz2919@tom.com">fz2919@tom.com</a>
  * 类全名 cn.peyton.android.latte.core.app.Configurator
  * 项目名 FestEC
  * 创建时间 2017-12-01 - 11:18
  * 版本 1.0.0
+ * </pre>
  */
 public class Configurator {
 

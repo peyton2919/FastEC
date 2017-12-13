@@ -9,16 +9,15 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
+ * <h3>Rest Call 请求的回调</h3>
  * <pre>
- *  Rest Call 请求的回调
- * </pre>
- *
  * 作者 <a href="http://www.peyton.cn">peyton</a>
  * 邮箱 <a href="mailto:fz2919@tom.com">fz2919@tom.com</a>
  * 类全名 cn.peyton.android.latte.core.net.callback.RequestCallbacks
  * 项目名 FestEC
  * 创建时间 2017-12-03 11:13
  * 版本 1.0.0
+ * </pre>
  */
 public class RequestCallbacks implements Callback<String>{
     /** 请求接口 { 用在加载条上} */

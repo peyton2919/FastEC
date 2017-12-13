@@ -14,26 +14,30 @@ import cn.peyton.android.latte.core.util.file.FileUtil;
 import okhttp3.ResponseBody;
 
 /**
+ * <h3>文件保存类 {异步任务调用}</h3>
  * <pre>
- *
- * </pre>
- * <p>
  * 作者 <a href="http://www.peyton.cn">peyton</a>
  * 邮箱 <a href="mailto:fz2919@tom.com">fz2919@tom.com</a>
  * 类全名 cn.peyton.android.latte.core.net.download.SaveFileTask
  * 项目名 FestEC
  * 创建时间 2017-12-03 14:39
  * 版本 1.0.0
+ * </pre>
  */
 public class SaveFileTask extends AsyncTask<Object, Void, File> {
-
+    /** 请求接口 */
     private final IRequest REQUEST;
-
+    /** 成功接口 */
     private final ISuccess SUCCESS;
 
-    public SaveFileTask(IRequest REQUEST, ISuccess SUCCESS) {
-        this.REQUEST = REQUEST;
-        this.SUCCESS = SUCCESS;
+    /**
+     * 构造函数
+     * @param request 请求接口
+     * @param success 成功接口
+     */
+    public SaveFileTask(IRequest request, ISuccess success) {
+        this.REQUEST = request;
+        this.SUCCESS = success;
     }
 
     @Override

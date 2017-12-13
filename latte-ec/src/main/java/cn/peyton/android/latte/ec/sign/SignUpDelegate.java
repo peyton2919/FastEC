@@ -20,19 +20,18 @@ import cn.peyton.android.latte.ec.R;
 import cn.peyton.android.latte.ec.R2;
 
 /**
+ * <h3>注册 Delegate 类</h3>
  * <pre>
- *  注册逻辑
- * </pre>
- * <p>
  * 作者 <a href="http://www.peyton.cn">peyton</a>
  * 邮箱 <a href="mailto:fz2919@tom.com">fz2919@tom.com</a>
  * 类全名 cn.peyton.android.latte.ec.sign.SignUpDelegate
  * 项目名 FestEC
  * 创建时间 2017-12-04 15:27
  * 版本 1.0.0
+ * </pre>
  */
 public class SignUpDelegate extends LatteDelegate{
-
+    /** 登录监听接口 */
     private ISignListener mISignListener = null;
 
     @BindView(R2.id.edit_signup_name)
@@ -53,9 +52,6 @@ public class SignUpDelegate extends LatteDelegate{
             mISignListener = (ISignListener) activity;
         }
     }
-
-
-
 
     @OnClick(R2.id.btn_signup_register)
     void onClickSignup() {
@@ -97,19 +93,15 @@ public class SignUpDelegate extends LatteDelegate{
         start(new SignInDelegate());
     }
 
-
-
     @Override
     public Object setLayout() {
         return R.layout.delegate_sign_up;
     }
 
-
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
 
     }
-
 
     /**
      * 判断检查

@@ -30,27 +30,42 @@ import java.util.Locale;
 
 import cn.peyton.android.latte.core.app.Latte;
 
-
+/**
+ * <h3>文件工具类</h3>
+ * <pre>
+ * 作者 <a href="http://www.peyton.cn">peyton</a>
+ * 邮箱 <a href="mailto:fz2919@tom.com">fz2919@tom.com</a>
+ * 创建时间 2017/12/13 9:29
+ * 版本 1.0.0
+ * </pre>
+ */
 public final class FileUtil {
 
-    //格式化的模板
+
+    /** 格式化的模板 */
     private static final String TIME_FORMAT = "_yyyyMMdd_HHmmss";
 
-    private static final String SDCARD_DIR =
-            Environment.getExternalStorageDirectory().getPath();
+   /** SD卡的根目录 */
+    private static final String SDCARD_DIR = Environment.getExternalStorageDirectory().getPath();
 
-    //默认本地上传图片目录
-    public static final String UPLOAD_PHOTO_DIR =
-            Environment.getExternalStorageDirectory().getPath() + "/a_upload_photos/";
+    /** 子目录 */
+    private static final String CHILD_DIR = "cn.peyton.fastec";
 
-    //网页缓存地址
-    public static final String WEB_CACHE_DIR =
-            Environment.getExternalStorageDirectory().getPath() + "/app_web_cache/";
+    /** 默认本地上传图片目录 */
+    public static final String UPLOAD_PHOTO_DIR = SDCARD_DIR + CHILD_DIR + "/a_upload_photos/";
 
-    //系统相机目录
+    /** 网页缓存地址 */
+    public static final String WEB_CACHE_DIR = SDCARD_DIR + CHILD_DIR + "/app_web_cache/";
+
+    /** 系统相机目录 */
     public static final String CAMERA_PHOTO_DIR =
             Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).getPath() + "/Camera/";
 
+    /**
+     * 获取时间格式
+     * @param timeFormatHeader 格式化的头(除去时间部分)
+     * @return 数字型的字符串
+     */
     private static String getTimeFormatName(String timeFormatHeader) {
         final Date date = new Date(System.currentTimeMillis());
         //必须要加上单引号
@@ -67,6 +82,11 @@ public final class FileUtil {
         return getTimeFormatName(timeFormatHeader) + "." + extension;
     }
 
+    /**
+     * 创建目录
+     * @param sdcardDirName 目录名称
+     * @return 文件对象
+     */
     @SuppressWarnings("ResultOfMethodCallIgnored")
     private static File createDir(String sdcardDirName) {
         //拼接成SD卡中完整的dir
@@ -78,23 +98,44 @@ public final class FileUtil {
         return fileDir;
     }
 
+    /**
+     * 创建文件
+     * @param sdcardDirName 目录名称
+     * @param fileName 文件名称
+     * @return 文件对象
+     */
     @SuppressWarnings("ResultOfMethodCallIgnored")
     public static File createFile(String sdcardDirName, String fileName) {
         return new File(createDir(sdcardDirName), fileName);
     }
 
+    /**
+     * 创建文件名称
+     * @param sdcardDirName 目录名称
+     * @param timeFormatHeader 时间字符串
+     * @param extension 扩展名
+     * @return 文件对象
+     */
     private static File createFileByTime(String sdcardDirName, String timeFormatHeader, String extension) {
         final String fileName = getFileNameByTime(timeFormatHeader, extension);
         return createFile(sdcardDirName, fileName);
     }
 
-    //获取文件的MIME
+    /**
+     *  获取文件的MIME
+     * @param filePath 文件路径
+     * @return 文件的MIME
+     */
     public static String getMimeType(String filePath) {
         final String extension = getExtension(filePath);
         return MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
     }
 
-    //获取文件的后缀名
+    /**
+     * 获取文件的后缀名
+     * @param filePath 文件路径
+     * @return 文件的后缀名
+     */
     public static String getExtension(String filePath) {
         String suffix = "";
         final File file = new File(filePath);
@@ -132,19 +173,11 @@ public final class FileUtil {
         } finally {
             try {
 
-                if (bos != null) {
-                    bos.flush();
-                }
-                if (bos != null) {
-                    bos.close();
-                }
+                if (bos != null) {bos.flush();}
+                if (bos != null) {bos.close();}
                 //关闭流
-                if (fos != null) {
-                    fos.flush();
-                }
-                if (fos != null) {
-                    fos.close();
-                }
+                if (fos != null) {fos.flush();}
+                if (fos != null) {fos.close();}
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -154,6 +187,13 @@ public final class FileUtil {
         return fileName;
     }
 
+    /**
+     * 流写入磁盘
+     * @param is 输入流
+     * @param dir 目录名称
+     * @param name 文件名称
+     * @return 文件对象
+     */
     public static File writeToDisk(InputStream is, String dir, String name) {
         final File file = FileUtil.createFile(dir, name);
         BufferedInputStream bis = null;
@@ -174,8 +214,6 @@ public final class FileUtil {
 
             bos.flush();
             fos.flush();
-
-
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -198,6 +236,14 @@ public final class FileUtil {
         return file;
     }
 
+    /**
+     * 流写入磁盘
+     * @param is 输入流
+     * @param dir 目录名称
+     * @param prefix 文件前缀
+     * @param extension 文件扩展名
+     * @return
+     */
     public static File writeToDisk(InputStream is, String dir, String prefix, String extension) {
         final File file = FileUtil.createFileByTime(dir, prefix, extension);
         BufferedInputStream bis = null;
@@ -224,15 +270,9 @@ public final class FileUtil {
             e.printStackTrace();
         } finally {
             try {
-                if (bos != null) {
-                    bos.close();
-                }
-                if (fos != null) {
-                    fos.close();
-                }
-                if (bis != null) {
-                    bis.close();
-                }
+                if (bos != null) {bos.close();}
+                if (fos != null) {fos.close();}
+                if (bis != null) {bis.close();}
                 is.close();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -259,7 +299,9 @@ public final class FileUtil {
     }
 
     /**
-     * 读取raw目录中的文件,并返回为字符串
+     *  读取raw目录中的文件,并返回为字符串
+     * @param id 资源ID
+     * @return
      */
     public static String getRawFile(int id) {
         final InputStream is = Latte.getApplicationContext().getResources().openRawResource(id);
@@ -287,7 +329,11 @@ public final class FileUtil {
         return stringBuilder.toString();
     }
 
-
+    /**
+     * 设置Icon字体
+     * @param path 路径
+     * @param textView TextView对象
+     */
     public static void setIconFont(String path, TextView textView) {
         final Typeface typeface = Typeface.createFromAsset(Latte.getApplicationContext().getAssets(), path);
         textView.setTypeface(typeface);
@@ -295,6 +341,8 @@ public final class FileUtil {
 
     /**
      * 读取assets目录下的文件,并返回字符串
+     * @param name 名称
+     * @return 字符串
      */
     public static String getAssetsFile(String name) {
         InputStream is = null;
@@ -341,6 +389,12 @@ public final class FileUtil {
         }
     }
 
+    /**
+     * 获取路径
+     * @param context 上下文对象
+     * @param uri Uri 对象
+     * @return 路径
+     */
     public static String getRealFilePath(final Context context, final Uri uri) {
         if (null == uri) return null;
         final String scheme = uri.getScheme();

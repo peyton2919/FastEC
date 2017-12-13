@@ -12,23 +12,28 @@ import javax.lang.model.type.TypeMirror;
 import javax.lang.model.util.SimpleAnnotationValueVisitor7;
 
 /**
+ * <h3>AppRegister 观察者类{用于自动生成微信相关包与类}</h3>
  * <pre>
- *
- * </pre>
- * <p>
  * 作者 <a href="http://www.peyton.cn">peyton</a>
  * 邮箱 <a href="mailto:fz2919@tom.com">fz2919@tom.com</a>
  * 类全名 cn.peyton.android.latte.compiler.AppRegisterVisitor
  * 项目名 FestEC
  * 创建时间 2017-12-05 19:00
  * 版本 1.0.0
+ * </pre>
  */
 public class AppRegisterVisitor extends SimpleAnnotationValueVisitor7<Void, Void> {
+    /** Filer对象 */
     private final Filer FILER;
+    /** 包名 */
     private String mPackageName = null;
 
-    AppRegisterVisitor(Filer FILER) {
-        this.FILER = FILER;
+    /**
+     * 构造函数
+     * @param filer Filer对象
+     */
+    AppRegisterVisitor(Filer filer) {
+        this.FILER = filer;
     }
 
     @Override
@@ -43,6 +48,10 @@ public class AppRegisterVisitor extends SimpleAnnotationValueVisitor7<Void, Void
         return p;
     }
 
+    /**
+     * 自动生成java code
+     * @param typeMirror
+     */
     private void generateJavaCode(TypeMirror typeMirror) {
         final TypeSpec targetActivity =
                 TypeSpec.classBuilder("AppRegister")

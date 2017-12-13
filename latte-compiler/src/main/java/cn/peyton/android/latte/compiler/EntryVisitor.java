@@ -12,6 +12,7 @@ import javax.lang.model.type.TypeMirror;
 import javax.lang.model.util.SimpleAnnotationValueVisitor7;
 
 /**
+ * <h3>Entry 观察者类{用于自动生成微信相关包与类}</h3>
  * <pre>
  *
  * </pre>
@@ -24,11 +25,17 @@ import javax.lang.model.util.SimpleAnnotationValueVisitor7;
  * 版本 1.0.0
  */
 public final class EntryVisitor extends SimpleAnnotationValueVisitor7<Void, Void> {
+    /** Filer对象 */
     private final Filer FILER;
+    /** 包名 */
     private String mPackageName = null;
 
-    EntryVisitor(Filer FILER) {
-        this.FILER = FILER;
+    /**
+     * 构造函数
+     * @param filer Filer对象
+     */
+    EntryVisitor(Filer filer) {
+        this.FILER = filer;
     }
 
     @Override
@@ -42,7 +49,10 @@ public final class EntryVisitor extends SimpleAnnotationValueVisitor7<Void, Void
         generateJavaCode(t);
         return p;
     }
-
+    /**
+     * 自动生成java code
+     * @param typeMirror
+     */
     private void generateJavaCode(TypeMirror typeMirror) {
         final TypeSpec targetActivity =
                 TypeSpec.classBuilder("WXEntryActivity")

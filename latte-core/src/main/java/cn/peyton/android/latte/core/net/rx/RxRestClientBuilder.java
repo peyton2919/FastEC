@@ -12,16 +12,15 @@ import okhttp3.MediaType;
 import okhttp3.RequestBody;
 
 /**
+ * <h3>RxREST 网络请求 Builder类</h3>
  * <pre>
- * RxREST
- * </pre>
- *
  * 作者 <a href="http://www.peyton.cn">peyton</a>
  * 邮箱 <a href="mailto:fz2919@tom.com">fz2919@tom.com</a>
  * 类全名 cn.peyton.android.latte.core.net.RestClientBuilder
  * 项目名 FestEC
  * 创建时间 2017-12-03 10:33
  * 版本 1.0.0
+ * </pre>
  */
 @SuppressWarnings("ALL")
 public class RxRestClientBuilder {

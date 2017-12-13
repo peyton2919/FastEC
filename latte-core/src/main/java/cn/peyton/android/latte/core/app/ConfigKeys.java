@@ -1,16 +1,15 @@
 package cn.peyton.android.latte.core.app;
 
 /**
+ * <h3>全局配置类型枚举</h3>
  * <pre>
- *  配置类型
- * </pre>
- *
  * 作者 <a href="http://www.peyton.cn">peyton</a>
  * 邮箱 <a href="mailto:fz2919@tom.com">fz2919@tom.com</a>
  * 类全名 cn.peyton.android.latte.core.app.ConfigKeys
  * 项目名 FestEC
  * 创建时间 2017-12-01 - 11:21
  * 版本 1.0.0
+ * </pre>
  */
 @SuppressWarnings("ALL")
 public enum ConfigKeys {

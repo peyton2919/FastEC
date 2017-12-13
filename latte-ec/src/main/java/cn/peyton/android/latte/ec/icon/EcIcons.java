@@ -3,20 +3,20 @@ package cn.peyton.android.latte.ec.icon;
 import com.joanzapata.iconify.Icon;
 
 /**
+ * <h3>图标 枚举</h3>
  * <pre>
- *
+ * 作者 <a href="http://www.peyton.cn">peyton</a>
+ * 邮箱 <a href="mailto:fz2919@tom.com">fz2919@tom.com</a>
+ * 完整类名 cn.peyton.android.latte.ec.icon.EcIcons
+ * 创建时间 2017/12/13 16:08
+ * 版本 1.0.0
  * </pre>
- *
- * @作者 <a href="http://www.peyton.cn">peyton</a>
- * @邮箱 <a href="mailto:fz2919@tom.com">fz2919@tom.com</a>
- * @类全名 cn.peyton.android.latte.ec.icon.EcIcons
- * @项目名 FestEC
- * @创建时间 2017-12-01 - 12:48
- * @版本 1.0.0
  */
 @SuppressWarnings("ALL")
 public enum EcIcons implements Icon{
+    /** 扫描 */
     icon_scan('\ue642'),
+    /** 支付 */
     icon_ali_pay('\ue67c'),
     ;
 

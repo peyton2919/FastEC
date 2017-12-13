@@ -17,12 +17,12 @@ import cn.peyton.android.latte.core.app.Latte;
  * Context.getSharedPreferences(String name,int mode)生成name.xml
  * </pre>
  * <p>
- * 作者 <a href="http://www.peyton.cn">peyton</a>
- * 邮箱 <a href="mailto:fz2919@tom.com">fz2919@tom.com</a>
- * 类全名 cn.peyton.android.latte.core.util.storage.LattePreference
- * 项目名 FestEC
- * 创建时间 2017-12-04 13:34
- * 版本 1.0.0
+ * 作者 <a href="http://www.peyton.cn">peyton</a><br>
+ * 邮箱 <a href="mailto:fz2919@tom.com">fz2919@tom.com</a><br>
+ * 类全名 cn.peyton.android.latte.core.util.storage.LattePreference <br>
+ * 项目名 FestEC<br>
+ * 创建时间 2017-12-04 13:34<br>
+ * 版本 1.0.0<br>
  */
 public class LattePreference {
 
@@ -38,7 +38,7 @@ public class LattePreference {
     private static final String APP_PREFERENCES_KEY = "profile";
 
     /**
-     * 获取
+     * 获取 Preference 对象
      * @return
      */
     private static SharedPreferences getAppPreference() {
@@ -46,8 +46,8 @@ public class LattePreference {
     }
 
     /**
-     * 存入
-     * @param val
+     * 存入  {key : APP_PREFERENCES_KEY}
+     * @param val 值
      */
     public static void setAppProfile(String val) {
         getAppPreference()
@@ -56,15 +56,26 @@ public class LattePreference {
                 .apply();
     }
 
+    /**
+     * 获取 Preference对象 {key : APP_PREFERENCES_KEY}
+     * @return Preference对象
+     */
     public static String getAppProfile() {
         return getAppPreference().getString(APP_PREFERENCES_KEY, null);
     }
 
+    /**
+     * 获取Json
+     * @return json
+     */
     public static JSONObject getAppProfileJson() {
         final String profile = getAppProfile();
         return JSON.parseObject(profile);
     }
 
+    /**
+     * 移除Preference 对象
+     */
     public static void removeAppProfile() {
         getAppPreference()
                 .edit()
@@ -72,6 +83,9 @@ public class LattePreference {
                 .apply();
     }
 
+    /**
+     * 清空Preference 对象
+     */
     public static void clearAppPreferences() {
         getAppPreference()
                 .edit()
@@ -91,11 +105,21 @@ public class LattePreference {
                 .apply();
     }
 
+    /**
+     * 获取全局 Flag值
+     * @param key
+     * @return
+     */
     public static boolean getAppFlag(String key) {
         return getAppPreference()
                 .getBoolean(key, false);
     }
 
+    /**
+     * 存入客户信息
+     * @param key 键
+     * @param val 值
+     */
     public static void addCustomAppProfile(String key, String val) {
         getAppPreference()
                 .edit()
@@ -103,6 +127,11 @@ public class LattePreference {
                 .apply();
     }
 
+    /**
+     * 获取客户信息
+     * @param key 键
+     * @return 值
+     */
     public static String getCustomAppProfile(String key) {
         return getAppPreference().getString(key, "");
     }

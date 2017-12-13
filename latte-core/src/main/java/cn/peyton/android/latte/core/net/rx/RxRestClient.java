@@ -17,16 +17,24 @@ import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 
 /**
+ * <h3>RxREST 网络请求类</h3>
  * <pre>
- * RxREST 请求对象
+ *     封装 RxJava 2 Android 网络请求
+ *     https://github.com/amitshekhariitbhu/RxJava2-Android-Samples
+ *     引用{
+ *         compile 'io.reactivex.rxjava2:rxjava:2.1.1'
+ *         compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+ *         compile 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+ *     }
  * </pre>
- *
+ * <pre>
  * 作者 <a href="http://www.peyton.cn">peyton</a>
  * 邮箱 <a href="mailto:fz2919@tom.com">fz2919@tom.com</a>
  * 类全名 cn.peyton.android.latte.core.net.RestClient
  * 项目名 FestEC
  * 创建时间 2017-12-02 - 21:38
  * 版本 1.0.0
+ * </pre>
  */
 public class RxRestClient {
 

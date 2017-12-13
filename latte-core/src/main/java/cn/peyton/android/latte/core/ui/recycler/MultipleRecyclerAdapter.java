@@ -19,43 +19,61 @@ import cn.peyton.android.latte.core.R;
 import cn.peyton.android.latte.core.ui.banner.BannerCreator;
 
 /**
+ * <h3>多个视图循环适配器</h3>
  * <pre>
- *
- * </pre>
- * <p>
  * 作者 <a href="http://www.peyton.cn">peyton</a>
  * 邮箱 <a href="mailto:fz2919@tom.com">fz2919@tom.com</a>
  * 创建时间 ${date} ${time}
  * 版本 1.0.0
+ * </pre>
  */
 
 public class MultipleRecyclerAdapter extends
         BaseMultiItemQuickAdapter<MultipleItemEntity, MultipleViewHolder>
         implements BaseQuickAdapter.SpanSizeLookup, OnItemClickListener{
 
-    //确保初始化一次Banner ,防止重复Item加载
+    /** 确保初始化一次Banner ,防止重复Item加载 */
     private boolean mIsInitBanner = false;
-    //设置图片加载策略
+
+    /** 设置图片加载策略 */
     private static final RequestOptions REQUEST_OPTIONS = new RequestOptions()
             .centerCrop()
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .dontAnimate();
 
+    /**
+     * 构造函数
+     * @param data MultipleItemEntity对象集合
+     */
     protected MultipleRecyclerAdapter(List<MultipleItemEntity> data) {
         super(data);
-        init();
+        init();  //初始化
     }
 
+    /**
+     * 创建 MultipleRecyclerAdapter 对象 {简单工厂模式}
+     * @param data MultipleItemEntity对象集合
+     * @return MultipleItemEntity对象集合
+     */
     public static MultipleRecyclerAdapter create(List<MultipleItemEntity> data) {
         return new MultipleRecyclerAdapter(data);
     }
 
+    /**
+     * 创建 MultipleRecyclerAdapter 对象 {简单工厂模式}
+     * @param converter 数据转换器对象
+     * @return MultipleItemEntity对象集合
+     */
     public static MultipleRecyclerAdapter create(DataConverter converter) {
         return new MultipleRecyclerAdapter(converter.convert());
     }
 
 
-
+    /**
+     * 转换器
+     * @param holder
+     * @param entity
+     */
     @Override
     protected void convert(MultipleViewHolder holder, MultipleItemEntity entity) {
         final String text;
@@ -107,6 +125,9 @@ public class MultipleRecyclerAdapter extends
         return MultipleViewHolder.create(view);
     }
 
+    /**
+     * 初始化数据
+     */
     private void init() {
         //设置不同的布局
         addItemType(ItemType.TEXT, R.layout.item_multiple_text);

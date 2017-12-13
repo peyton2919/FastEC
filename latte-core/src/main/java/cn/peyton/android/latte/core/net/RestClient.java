@@ -21,16 +21,25 @@ import retrofit2.Call;
 import retrofit2.Callback;
 
 /**
+ * <h3>REST 网络请求 类</h3>
  * <pre>
- * REST 请求对象
+ *     封装 retrofit 网络请求
+ *     http://square.github.io/retrofit/
+ *     引用{
+ *         compile 'com.squareup.okio:okio:1.13.0'
+ *         compile 'com.squareup.okhttp3:okhttp:3.8.1'
+ *         compile 'com.squareup.retrofit2:retrofit:2.3.0'
+ *         compile 'com.squareup.retrofit2:converter-scalars:2.3.0'
+ *     }
  * </pre>
- *
+ * <pre>
  * 作者 <a href="http://www.peyton.cn">peyton</a>
  * 邮箱 <a href="mailto:fz2919@tom.com">fz2919@tom.com</a>
  * 类全名 cn.peyton.android.latte.core.net.RestClient
  * 项目名 FestEC
- * 创建时间 2017-12-02 - 21:38
+ * 创建时间 2017-12-02 21:38
  * 版本 1.0.0
+ * </pre>
  */
 public class RestClient {
 
@@ -151,12 +160,11 @@ public class RestClient {
         if (null != call) {
             call.enqueue(getRequestCallback());
         }
-
     }
 
     /**
      * 请求回复{Callback}
-     * @return
+     * @return RequestCallbacks 对象
      */
     private Callback<String> getRequestCallback(){
         return new RequestCallbacks(REQUEST, SUCCESS, FAILURE, ERROR,LOADER_STYLE);
@@ -200,6 +208,7 @@ public class RestClient {
     /**
      * delete请求
      */
+    @SuppressWarnings("unused")
     public final void delete(){
         request(HttpMethod.DELETE);
     }
@@ -207,6 +216,7 @@ public class RestClient {
     /**
      * 下载
      */
+    @SuppressWarnings("unused")
     public final void download() {
         new DownloadHandler(URL,REQUEST,DWONLOAD_DIR,EXTENSION,NAME,SUCCESS,FAILURE,ERROR).handleDownload();
     }

@@ -21,27 +21,27 @@ import cn.peyton.android.latte.core.util.storage.LattePreference;
 import cn.peyton.android.latte.ec.R;
 
 /**
+ * <h3>启动图 轮播Delegate 类</h3>
  * <pre>
- *  启动图 滚动类
- * </pre>
- * <p>
  * 作者 <a href="http://www.peyton.cn">peyton</a>
  * 邮箱 <a href="mailto:fz2919@tom.com">fz2919@tom.com</a>
  * 类全名 cn.peyton.android.latte.ec.launcher.LanucherScrollDelegate
  * 项目名 FestEC
  * 创建时间 2017-12-04 14:36
  * 版本 1.0.0
+ * </pre>
  */
 public class LanucherScrollDelegate extends LatteDelegate implements OnItemClickListener{
-
+    /** 申明ConvenientBanner对象 */
     private ConvenientBanner<Integer> mConvenientBanner = null;
+    /** 申明 集合 */
     private static final ArrayList<Integer> INTEGERS = new ArrayList<>();
+    /** 申明轮播接口 */
     private ILauncherListener mLauncherListener = null;
 
 
 
     @Override
-
     public Object setLayout() {
         mConvenientBanner = new ConvenientBanner<Integer>(getContext());
         return mConvenientBanner;
@@ -49,7 +49,7 @@ public class LanucherScrollDelegate extends LatteDelegate implements OnItemClick
 
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
-        initBanner();
+        initBanner(); //初始化Banner
     }
 
     @Override

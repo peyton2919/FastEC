@@ -6,16 +6,15 @@ import android.util.DisplayMetrics;
 import cn.peyton.android.latte.core.app.Latte;
 
 /**
+ * <h3>测量工具类{获取屏幕宽 高}</h3>
  * <pre>
- * 测量工具类
- * </pre>
- *
  * 作者 <a href="http://www.peyton.cn">peyton</a>
  * 邮箱 <a href="mailto:fz2919@tom.com">fz2919@tom.com</a>
  * 类全名 cn.peyton.android.latte.core.util.dimen.DimenUtil
- * 项目名 FestEC
+ * 项目名 FestEC<br>
  * 创建时间 2017-12-03 12:41
  * 版本 1.0.0
+ * </pre>
  */
 public class DimenUtil {
 

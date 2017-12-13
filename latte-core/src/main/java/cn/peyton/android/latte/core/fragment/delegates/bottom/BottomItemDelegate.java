@@ -8,20 +8,20 @@ import cn.peyton.android.latte.core.R;
 import cn.peyton.android.latte.core.fragment.delegates.LatteDelegate;
 
 /**
+ * <h3>BottomItem Delegate类</h3>
  * <pre>
- *
- * </pre>
- * <p>
  * 作者 <a href="http://www.peyton.cn">peyton</a>
  * 邮箱 <a href="mailto:fz2919@tom.com">fz2919@tom.com</a>
- * 创建时间 ${date} ${time}
+ * 完整类名 cn.peyton.android.latte.core.fragment.delegates.bottom.BottomItemDelegate
+ * 创建时间 2017/12/13 16:05
  * 版本 1.0.0
+ * </pre>
  */
-
 public abstract class BottomItemDelegate extends LatteDelegate
         implements View.OnKeyListener{
-
+    /** 退出时间 */
     private long mExitTime = 0;
+    /**  */
     private static final int EXIT_TIME = 2000;
 
     @Override

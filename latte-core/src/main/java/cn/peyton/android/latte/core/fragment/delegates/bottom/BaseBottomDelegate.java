@@ -23,32 +23,47 @@ import cn.peyton.android.latte.core.fragment.delegates.LatteDelegate;
 import me.yokeyword.fragmentation.SupportFragment;
 
 /**
+ * <h3>基本容器Delegate 类</h3>
  * <pre>
- *  基本容器
- * </pre>
- * <p>
  * 作者 <a href="http://www.peyton.cn">peyton</a>
  * 邮箱 <a href="mailto:fz2919@tom.com">fz2919@tom.com</a>
- * 创建时间 ${date} ${time}
+ * 完整类名 cn.peyton.android.latte.core.fragment.delegates.bottom.BaseBottomDelegate
+ * 创建时间 2017/12/13 15:59
  * 版本 1.0.0
+ * </pre>
  */
-
 public abstract class BaseBottomDelegate extends LatteDelegate implements View.OnClickListener{
-
+    /** 申明 BottomTab对象集合 */
     private final ArrayList<BottomTabBean> TAB_BEANS = new ArrayList<>();
+    /** 申明 BottomItemDelegate对象集合 */
     private final ArrayList<BottomItemDelegate> ITEM_DELEGATES = new ArrayList<>();
 
-
+    /** 申明 BottomItemDelegate集合 */
     private final LinkedHashMap<BottomTabBean, BottomItemDelegate> ITEMS = new LinkedHashMap<>();
-
+    /** 申明当前Delegate */
     private  int mCurrentDelegate = 0;
+    /** 申明第一个Delegate */
     private int mIndexDelegate = 0;
+    /** 申明点击颜色 */
     private int mClickedColor = Color.RED;
 
+    /**
+     * 设置Item集合 {指定子类实现}
+     * @param builder ItemBuilder对象
+     * @return LinkedHashMap<BottomTabBean, BottomItemDelegate>对象
+     */
     public abstract LinkedHashMap<BottomTabBean, BottomItemDelegate> setItems(ItemBuilder builder);
 
+    /**
+     * 设置第一个Delegate {指定子类实现}
+     * @return
+     */
     public abstract int setIndexDelegate();
 
+    /**
+     * 设置点击颜色 {指定子类实现}
+     * @return
+     */
     @ColorInt
     public abstract int setClickedColor();
 
@@ -103,7 +118,9 @@ public abstract class BaseBottomDelegate extends LatteDelegate implements View.O
         loadMultipleRootFragment(R.id.bottom_bar_delegate_container,mIndexDelegate,delegateArray);
     }
 
-
+    /**
+     * 重置颜色
+     */
     private void resetColor() {
         final int count = mBottomBar.getChildCount();
         for (int i = 0; i < count; i++) {

@@ -24,22 +24,23 @@ import cn.peyton.android.latte.ec.R;
 import cn.peyton.android.latte.ec.R2;
 
 /**
+ * <h3>启动 Delegate 类</h3>
  * <pre>
- *  启动图
- * </pre>
- * <p>
  * 作者 <a href="http://www.peyton.cn">peyton</a>
  * 邮箱 <a href="mailto:fz2919@tom.com">fz2919@tom.com</a>
  * 类全名 cn.peyton.android.latte.ec.launcher.LauncherDelegate
  * 项目名 FestEC
  * 创建时间 2017-12-04 13:43
  * 版本 1.0.0
+ * </pre>
  */
 public class LauncherDelegate extends LatteDelegate implements ITimerListener{
 
-
+    /** 定时器 */
     private Timer mTimer = null;
+    /** 计时数 */
     private int mCount = 5;
+    /** 轮播图接口 */
     private ILauncherListener mLauncherListener = null;
 
     @BindView(R2.id.tv_launcher_timer)
@@ -54,8 +55,6 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener{
             checkedIsShowScroll(); //
         }
     }
-
-
 
     @Override
     public Object setLayout() {
