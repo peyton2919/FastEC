@@ -32,6 +32,7 @@ public enum ConfigKeys {
     /** 微信用到的上下文 */
     ACTIVITY,
     HANDLER,
+    /** WebView Javascript */
     JAVASCRIPT_INTERFACE,
     WEB_HOST,
     ;

@@ -11,6 +11,9 @@ import com.orhanobut.logger.Logger;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import cn.peyton.android.latte.core.fragment.delegates.web.event.Event;
+import cn.peyton.android.latte.core.fragment.delegates.web.event.EventManager;
+import io.reactivex.annotations.NonNull;
 import okhttp3.Interceptor;
 
 /**
@@ -138,7 +141,28 @@ public class Configurator {
     }
     //=================================== 微信 end ===========================================
 
+    /**
+     * WebView Javascript 名称
+     * @param name Javascript 名称
+     * @return
+     */
+    public Configurator withJavascriptInterface(@NonNull String name) {
+        LATTE_CONFIGS.put(ConfigKeys.JAVASCRIPT_INTERFACE, name);
+        return this;
+    }
 
+    /**
+     *
+     * @param name
+     * @param event
+     * @return
+     */
+    public Configurator withWebEvent(@NonNull String name, @NonNull Event event) {
+        final EventManager manager = EventManager.getInstance();
+        manager.addEvent(name, event);
+        LATTE_CONFIGS.put(ConfigKeys.JAVASCRIPT_INTERFACE, name);
+        return this;
+    }
     //============================ Interceptor begin ==========================================
     /**
      * 添加拦截器

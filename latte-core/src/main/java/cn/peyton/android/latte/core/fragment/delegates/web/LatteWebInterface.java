@@ -2,8 +2,11 @@ package cn.peyton.android.latte.core.fragment.delegates.web;
 
 import com.alibaba.fastjson.JSON;
 
+import cn.peyton.android.latte.core.fragment.delegates.web.event.Event;
+import cn.peyton.android.latte.core.fragment.delegates.web.event.EventManager;
+
 /**
- * <h3>Latte Web 接口</h3>
+ * <h3>Latte Web {WebView} 接口</h3>
  * <pre>
  * 作者 <a href="http://www.peyton.cn">peyton</a>
  * 邮箱 <a href="mailto:fz2919@tom.com">fz2919@tom.com</a>
@@ -12,7 +15,7 @@ import com.alibaba.fastjson.JSON;
  * 版本 1.0.0
  * </pre>
  */
-public class LatteWebInterface {
+public final class LatteWebInterface {
     /**  申明 WebDelegate 对象 */
     private final WebDelegate DELEGATE;
 
@@ -33,8 +36,17 @@ public class LatteWebInterface {
         return new LatteWebInterface(delegate);
     }
 
+    @SuppressWarnings("unused")
     public String event(String params) {
         final String action = JSON.parseObject(params).getString("action");
+        final Event event = EventManager.getInstance().createEvent(action);
+        if (null != event) {
+            event.setAction(action);
+            event.setDelegate(DELEGATE);
+            event.setContext(DELEGATE.getContext());
+            event.setUrl(DELEGATE.getUrl());
+            return event.execute(params);
+        }
         return null;
     }
 }

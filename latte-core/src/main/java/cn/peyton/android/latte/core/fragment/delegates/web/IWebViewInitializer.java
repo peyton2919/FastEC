@@ -5,7 +5,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 /**
- * <h3>WebView 初始化 接口</h3>
+ * <h3>Web {WebView} 初始化 接口</h3>
  * <pre>
  * 作者 <a href="http://www.peyton.cn">peyton</a>
  * 邮箱 <a href="mailto:fz2919@tom.com">fz2919@tom.com</a>

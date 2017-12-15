@@ -6,6 +6,7 @@ import com.facebook.stetho.Stetho;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 
 import cn.peyton.android.fastec.example.R;
+import cn.peyton.android.fastec.example.event.TestEvent;
 import cn.peyton.android.latte.core.app.CrashHandler;
 import cn.peyton.android.latte.core.app.Latte;
 import cn.peyton.android.latte.core.net.interceptors.DebugInterceptor;
@@ -40,6 +41,8 @@ public class ExapleApp extends Application {
                 //微信传值,调用在ec包中
                 .withWeChatAppId("wxb2d694b9076f1b36")
                 .withWeChatAppSecret("d4624c36b6795d1d99dcf0547af5443d")
+                .withJavascriptInterface("latte")
+                .withWebEvent("test",new TestEvent())
                 .configure();
        // initStetho();
         DatabaseManager.getInstance().init(this); //初始化

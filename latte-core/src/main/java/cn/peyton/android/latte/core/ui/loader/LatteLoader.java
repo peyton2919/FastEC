@@ -78,6 +78,9 @@ public class LatteLoader {
         showLoading(context,DEFAULT_LOADER);
     }
 
+    /**
+     * 停止加载
+     */
     public static void stopLoading() {
         for (AppCompatDialog dialog : LOADERS) {
             if (null != dialog) {

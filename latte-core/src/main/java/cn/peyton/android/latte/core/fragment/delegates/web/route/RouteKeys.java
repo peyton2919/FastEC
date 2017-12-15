@@ -1,7 +1,7 @@
 package cn.peyton.android.latte.core.fragment.delegates.web.route;
 
 /**
- * <h3>路由 枚举</h3>
+ * <h3>路由 {WebView} 枚举</h3>
  * <pre>
  * 作者 <a href="http://www.peyton.cn">peyton</a>
  * 邮箱 <a href="mailto:fz2919@tom.com">fz2919@tom.com</a>
@@ -11,7 +11,7 @@ package cn.peyton.android.latte.core.fragment.delegates.web.route;
  * </pre>
  */
 public enum  RouteKeys {
-    /** web页面跳转必须传递的参数 */
+    /** web 页面跳转必须传递的参数 */
     URL,
     ;
 }
