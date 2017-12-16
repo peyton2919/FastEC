@@ -56,16 +56,8 @@ public class Configurator {
         LATTE_CONFIGS.put(ConfigKeys.CONFIG_READY, true);
     }
 
-    /**
-     * 配置Host信息
-     * @param host 主机名
-     * @return Configurator对象
-     */
-    public final Configurator withApiHost(String host) {
-        LATTE_CONFIGS.put(ConfigKeys.APP_HOST, host);
-        return this;
-    }
 
+    //=============================== 获取 Configurator 配置项 ===================================
     /**
      * 检查配置信息完整性
      * @param key  ConfigKeys 枚举
@@ -83,21 +75,23 @@ public class Configurator {
     }
 
     /**
-     * 检查配置项是否完成
-     */
-    private void checkedConfiguration() {
-        final boolean isReady = (boolean) LATTE_CONFIGS.get(ConfigKeys.CONFIG_READY);
-        if (!isReady) {
-            throw new RuntimeException("【Configurator】 配置信息加载还没完成");
-        }
-    }
-
-    /**
      * 获取配置信息集合
      * @return 配置信息集合
      */
     final  HashMap<Object ,Object> getLatteConfigs() {
         return LATTE_CONFIGS;
+    }
+    //=============================== 获取 Configurator 配置项 ===================================
+
+    //=============================== Configurator 配置项 ===================================
+    /**
+     * 配置Host信息
+     * @param host 主机名
+     * @return Configurator对象
+     */
+    public final Configurator withApiHost(String host) {
+        LATTE_CONFIGS.put(ConfigKeys.APP_HOST, host);
+        return this;
     }
 
     /**
@@ -109,6 +103,18 @@ public class Configurator {
         LATTE_CONFIGS.put(ConfigKeys.LOADER_DELAYED, delayed);
         return this;
     }
+
+    /**
+     * 浏览器加载的host
+     * @param host
+     * @return
+     */
+    public final Configurator withWebHost(String host) {
+        LATTE_CONFIGS.put(ConfigKeys.WEB_HOST, host);
+        return this;
+    }
+    //=============================== Configurator 配置项 ===================================
+
     //=================================== 微信 begin ===========================================
     /**
      * 微信ID
@@ -141,6 +147,7 @@ public class Configurator {
     }
     //=================================== 微信 end ===========================================
 
+    //=================================== WebView begin ========================================
     /**
      * WebView Javascript 名称
      * @param name Javascript 名称
@@ -163,6 +170,8 @@ public class Configurator {
         LATTE_CONFIGS.put(ConfigKeys.JAVASCRIPT_INTERFACE, name);
         return this;
     }
+    //=================================== WebView end ========================================
+
     //============================ Interceptor begin ==========================================
     /**
      * 添加拦截器
@@ -226,5 +235,16 @@ public class Configurator {
         private static final Configurator INSTANCE = new Configurator();
     }
     //====================线程安全懒汉模式 { 静态内部类 } 结束 ====================================================
+
+
+    /**
+     * 检查配置项是否完成
+     */
+    private void checkedConfiguration() {
+        final boolean isReady = (boolean) LATTE_CONFIGS.get(ConfigKeys.CONFIG_READY);
+        if (!isReady) {
+            throw new RuntimeException("【Configurator】 配置信息加载还没完成");
+        }
+    }
 
 }

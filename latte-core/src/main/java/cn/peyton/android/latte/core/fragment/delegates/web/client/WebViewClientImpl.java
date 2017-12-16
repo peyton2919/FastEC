@@ -2,15 +2,18 @@ package cn.peyton.android.latte.core.fragment.delegates.web.client;
 
 import android.graphics.Bitmap;
 import android.os.Handler;
+import android.webkit.CookieManager;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import cn.peyton.android.latte.core.app.ConfigKeys;
 import cn.peyton.android.latte.core.app.Latte;
 import cn.peyton.android.latte.core.fragment.delegates.web.IPageLoadListener;
 import cn.peyton.android.latte.core.fragment.delegates.web.WebDelegate;
 import cn.peyton.android.latte.core.fragment.delegates.web.route.Router;
 import cn.peyton.android.latte.core.ui.loader.LatteLoader;
 import cn.peyton.android.latte.core.util.log.LatteLogger;
+import cn.peyton.android.latte.core.util.storage.LattePreference;
 
 /**
  * <h3>{WebView} WebViewClient 实现类</h3>
@@ -76,6 +79,7 @@ public class WebViewClientImpl extends WebViewClient {
     @Override
     public void onPageFinished(WebView view, String url) {
         super.onPageFinished(view, url);
+        syncCookie();
         if (null != mPageLoadListener) {
             mPageLoadListener.onLoadEnd();
         }
@@ -86,4 +90,21 @@ public class WebViewClientImpl extends WebViewClient {
             }
         },1000);
     }
+
+    /**
+     * 获取浏览器Cookie
+     */
+    private void syncCookie() {
+        final CookieManager manager = CookieManager.getInstance();
+        //这里的Cookie和API 请求的Cookie是不一样的，这个在网页不可见
+        final String webHost = Latte.getConfiguration(ConfigKeys.WEB_HOST);
+        if (null != webHost) {
+            if (manager.hasCookies()) {
+                final String cookieStr = manager.getCookie(webHost);
+                if (null != cookieStr && !"".equals(cookieStr))
+                    LattePreference.addCustomAppProfile("cookie",cookieStr);
+            }
+        }
+    }
+
 }

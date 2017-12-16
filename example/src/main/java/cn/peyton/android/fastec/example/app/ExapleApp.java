@@ -10,6 +10,7 @@ import cn.peyton.android.fastec.example.event.TestEvent;
 import cn.peyton.android.latte.core.app.CrashHandler;
 import cn.peyton.android.latte.core.app.Latte;
 import cn.peyton.android.latte.core.net.interceptors.DebugInterceptor;
+import cn.peyton.android.latte.core.net.rx.AddCookieInterceptor;
 import cn.peyton.android.latte.ec.database.DatabaseManager;
 import cn.peyton.android.latte.ec.icon.FontECModule;
 
@@ -43,6 +44,8 @@ public class ExapleApp extends Application {
                 .withWeChatAppSecret("d4624c36b6795d1d99dcf0547af5443d")
                 .withJavascriptInterface("latte")
                 .withWebEvent("test",new TestEvent())
+                .withInterceptor(new AddCookieInterceptor())//添加Cookie同步拦截器
+                .withWebHost("https://www.baidu.com/")
                 .configure();
        // initStetho();
         DatabaseManager.getInstance().init(this); //初始化

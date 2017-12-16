@@ -34,6 +34,7 @@ public enum ConfigKeys {
     HANDLER,
     /** WebView Javascript */
     JAVASCRIPT_INTERFACE,
+    /** 浏览器加载的host */
     WEB_HOST,
     ;
 }

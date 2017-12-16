@@ -24,6 +24,9 @@ import cn.peyton.android.latte.core.fragment.delegates.web.route.Router;
  */
 public class WebDelegateImpl extends WebDelegate{
 
+    /**  申明 IPageLoadListener对象 */
+    private IPageLoadListener mPageLoadListener = null;
+
     @Override
     public Object setLayout() {
         return getWebView();
@@ -38,6 +41,13 @@ public class WebDelegateImpl extends WebDelegate{
         }
     }
 
+    /**
+     * 设置页面加载接口
+     * @param listener
+     */
+    public void setPageLoadListener(IPageLoadListener listener) {
+        this.mPageLoadListener = listener;
+    }
     /**
      * 创建 WebDelegateImpl对象{简单工厂模式}
      * @param url 链接地址
@@ -65,6 +75,7 @@ public class WebDelegateImpl extends WebDelegate{
     @Override
     public WebViewClient initWebViewClient() {
         final WebViewClientImpl client = new WebViewClientImpl(this);
+        client.setPageLoadListener(mPageLoadListener);
         return client;
     }
 
