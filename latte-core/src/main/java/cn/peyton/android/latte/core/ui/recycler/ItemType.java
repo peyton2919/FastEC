@@ -21,4 +21,5 @@ public class ItemType {
     public static final int BANNER = 4;
     /** 垂直目录集合 类型 */
     public static final int VERTICAL_MENU_LIST = 5;
+
 }

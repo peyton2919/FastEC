@@ -14,4 +14,13 @@
     <string name="signin_btn_d_login">登录</string>
     <string name="signin_d_hint_message">还没有账户? 现在可以注册</string>
     <string name="index_d_search">搜索</string>
+    <string name="shopCart_d_clear">清除</string>
+    <string name="shopCart_d_cart">购物车</string>
+    <string name="shopCart_d_delete">删除</string>
+    <string name="shopCart_d_account">结算</string>
+    <string name="shopCart_d_select_all">全选</string>
+    <string name="shopCart_d_summation">合计</string>
+    <string name="shopCart_d_shop_title">商品标题</string>
+    <string name="shopCart_d_shop_desc">商品描述</string>
+    <string name="shopCart_d_go_shopping">去购物</string>
 </resources>
