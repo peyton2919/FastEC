@@ -16,6 +16,7 @@ import com.joanzapata.iconify.widget.IconTextView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.WeakHashMap;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -37,22 +38,20 @@ import cn.peyton.android.latte.ec.R2;
  * 版本 1.0.0
  * </pre>
  */
-public class ShopCartDelegate extends BottomItemDelegate implements ISuccess{
+public class ShopCartDelegate extends BottomItemDelegate implements ISuccess,ICartItemListener{
     /** 申明 ShopCartAdapter对象 */
     private ShopCartAdapter mAdapter = null;
-    /** 当前选中的Item 数量 {购物车数量标记}*/
-   // private int mCurrentCount = 0;
-    /** 总数量 */
-   // private int mTotalCount = 0;
+    /** 当前总价 */
+    private double mTotalPrice = 0.00;
 
     @BindView(R2.id.icon_shop_cart_select_all)
     IconTextView mIconSelectAll = null;
-
     @BindView(R2.id.rv_shop_cart)
     RecyclerView mRecyclerView = null;
     @BindView(R2.id.stub_no_item)
     ViewStubCompat mStubNoItem = null;
-
+    @BindView(R2.id.tv_shop_cart_total_price)
+    AppCompatTextView mTvTotalPrice = null;
 
     /**
      * 点击全选
@@ -113,7 +112,16 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess{
         checkItemCount();
     }
 
+    /**
+     * <pre>
+     * 结算点击事件{
+     *
+     * }</pre>
+     */
+    @OnClick(R2.id.tv_shop_cart_pay)
+    void onClickPay() {
 
+    }
 
     @Override
     public Object setLayout() {
@@ -142,12 +150,54 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess{
                 .setJsonData(response)
                 .convert();
         mAdapter = new ShopCartAdapter(data);
+        mAdapter.setCartItemListener(this);
         final LinearLayoutManager manager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(manager);
         mRecyclerView.setAdapter(mAdapter);
-        checkItemCount();
+        mTotalPrice = mAdapter.getTotalPrice();
+        mTvTotalPrice.setText(String.valueOf(mTotalPrice));
+        checkItemCount();//
     }
 
+    @Override
+    public void onItemClick(double itemTotalPrice) {
+        final double price = mAdapter.getTotalPrice();
+        mTvTotalPrice.setText(String.valueOf(price));
+    }
+
+    /**
+     * 创建订单, 注意 和支付是没有关系的
+     */
+    private void createOrder() {
+        //TODO 添加订单URL
+        final String orderUrl = "";
+        final WeakHashMap<String, Object> orderParams = new WeakHashMap<>();
+        orderParams.put("userid", "");
+        orderParams.put("amount", 0.01);
+        orderParams.put("comment", "测试支付");
+        orderParams.put("type", 1);
+        orderParams.put("ordertype", 0);
+        orderParams.put("isanonymous", true);
+        orderParams.put("followeduser", 0);
+        RestClient.builder()
+                .url(orderUrl)
+                .loader(getContext())
+                .params(orderParams)
+                .success(new ISuccess() {
+                    @Override
+                    public void onSuccess(String response) {
+                        //进行具体支付
+                    }
+                })
+                .build()
+                .post();
+
+
+    }
+
+    /**
+     * 检查值
+     */
     private void checkItemCount() {
 
         final  int count = mAdapter.getItemCount();
@@ -165,4 +215,6 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess{
             mRecyclerView.setVisibility(View.VISIBLE);
         }
     }
+
+
 }

@@ -38,7 +38,7 @@ public class DiscoverDelegate extends BottomItemDelegate {
         final WebDelegateImpl delegate = WebDelegateImpl.create("default.html");
         //final WebDelegateImpl delegate = WebDelegateImpl.create("http://www.fj167.com/api/homedata");
         delegate.setTopDelegate(this.getParentDelegate());
-        loadRootFragment(R.id.web_discovery_container,delegate);
+        getSupportDelegate().loadRootFragment(R.id.web_discovery_container,delegate);
     }
 
     @Override

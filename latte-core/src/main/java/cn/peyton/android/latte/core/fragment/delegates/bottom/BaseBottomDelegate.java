@@ -20,7 +20,7 @@ import butterknife.BindView;
 import cn.peyton.android.latte.core.R;
 import cn.peyton.android.latte.core.R2;
 import cn.peyton.android.latte.core.fragment.delegates.LatteDelegate;
-import me.yokeyword.fragmentation.SupportFragment;
+import me.yokeyword.fragmentation.ISupportFragment;
 
 /**
  * <h3>基本容器Delegate 类</h3>
@@ -114,8 +114,9 @@ public abstract class BaseBottomDelegate extends LatteDelegate implements View.O
                 itemTitle.setTextColor(mClickedColor);
             }
         }
-        final SupportFragment[] delegateArray = ITEM_DELEGATES.toArray(new SupportFragment[size]);
-        loadMultipleRootFragment(R.id.bottom_bar_delegate_container,mIndexDelegate,delegateArray);
+
+        final ISupportFragment[] delegateArray = ITEM_DELEGATES.toArray(new ISupportFragment[size]);
+        getSupportDelegate().loadMultipleRootFragment(R.id.bottom_bar_delegate_container,mIndexDelegate,delegateArray);
     }
 
     /**
@@ -141,7 +142,7 @@ public abstract class BaseBottomDelegate extends LatteDelegate implements View.O
         itemIcon.setTextColor(mClickedColor);
         final AppCompatTextView itemTitle = (AppCompatTextView) item.getChildAt(1);
         itemTitle.setTextColor(mClickedColor);
-        showHideFragment(ITEM_DELEGATES.get(tag), ITEM_DELEGATES.get(mCurrentDelegate));
+        getSupportDelegate().showHideFragment(ITEM_DELEGATES.get(tag), ITEM_DELEGATES.get(mCurrentDelegate));
         //注意先后顺序
         mCurrentDelegate = tag;
     }

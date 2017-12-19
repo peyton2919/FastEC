@@ -16,6 +16,7 @@ import cn.peyton.android.latte.core.ui.recycler.MultipleViewHolder;
 import cn.peyton.android.latte.ec.R;
 import cn.peyton.android.latte.ec.main.sort.SortDelegate;
 import cn.peyton.android.latte.ec.main.sort.content.ContentDelegate;
+import me.yokeyword.fragmentation.SupportHelper;
 
 /**
  * <pre>
@@ -93,9 +94,9 @@ public class SortRecyclerAdapter extends MultipleRecyclerAdapter{
     }
 
     private void switchContent(ContentDelegate delegate) {
-        final LatteDelegate contentDelegate = DELEGATE.findChildFragment(ContentDelegate.class);
+        final LatteDelegate contentDelegate = SupportHelper.findFragment(DELEGATE.getChildFragmentManager(),ContentDelegate.class);
         if (null != contentDelegate) {
-            contentDelegate.replaceFragment(delegate,false);
+            contentDelegate.getSupportDelegate().replaceFragment(delegate,false);
         }
 
     }

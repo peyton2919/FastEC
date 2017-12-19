@@ -24,6 +24,7 @@ public abstract class BottomItemDelegate extends LatteDelegate
     /**  */
     private static final int EXIT_TIME = 2000;
 
+
     @Override
     public boolean onKey(View view, int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {

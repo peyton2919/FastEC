@@ -5,7 +5,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -35,8 +34,13 @@ import cn.peyton.android.latte.ec.R;
  * </pre>
  */
 public class ShopCartAdapter extends MultipleRecyclerAdapter{
-
+    /**   */
     private boolean mIsSelectedAll = false;
+    /**   */
+    private ICartItemListener mCartItemListener = null;
+    /**  商品总价  */
+    private double mTotalPrice = 0.00;
+
 
     private static final RequestOptions OPTIONS = new RequestOptions()
             .diskCacheStrategy(DiskCacheStrategy.ALL)
@@ -50,12 +54,27 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter{
      */
     protected ShopCartAdapter(List<MultipleItemEntity> data) {
         super(data);
+        //初始化总价
+        for (MultipleItemEntity entity : data) {
+            final double price = entity.getField(ShopCartItemFields.PRICE);
+            final int count = entity.getField(ShopCartItemFields.COUNT);
+            final double total = price * count;
+            mTotalPrice = mTotalPrice + total;
+        }
         //添加购物车 item布局
         addItemType(ShopCartItemType.SHOP_CART_ITEM, R.layout.item_shop_cart);
     }
 
     public void setIsSelectedAll(boolean isSelectedAll) {
         this.mIsSelectedAll = isSelectedAll;
+    }
+
+    public void setCartItemListener(ICartItemListener listener) {
+        this.mCartItemListener = listener;
+    }
+
+    public double getTotalPrice() {
+        return  mTotalPrice;
     }
 
     @Override
@@ -121,8 +140,6 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter{
                     @Override
                     public void onClick(View view) {
                         final int currentCount = entity.getField(ShopCartItemFields.COUNT);
-                        System.out.println("currentCount : " + currentCount);
-                        System.out.println("tvCount.getText : " + tvCount.getText().toString());
                         if (Integer.parseInt(tvCount.getText().toString()) > 1) {
                             RestClient.builder()
                                     .url("o2o/api/shopmp")
@@ -131,18 +148,46 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter{
                                     .success(new ISuccess() {
                                         @Override
                                         public void onSuccess(String response) {
-                                            Toast.makeText(mContext,response,Toast.LENGTH_LONG).show();
                                             int countNum = Integer.parseInt(tvCount.getText().toString());
-                                            System.out.println("iconMinus : " + countNum);
                                             countNum --;
                                             tvCount.setText(String.valueOf(countNum));
+                                            if (null != mCartItemListener) {
+                                               mTotalPrice = mTotalPrice - price;
+                                               final double itemTotal = countNum * price;
+                                               mCartItemListener.onItemClick(itemTotal);
+                                            }
                                         }
                                     })
                                     .build()
-                                    .post();;
+                                    .post();
 
 
                         }
+                    }
+                });
+                iconPlus.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        final int currentCount = entity.getField(ShopCartItemFields.COUNT);
+                        RestClient.builder()
+                                .url("o2o/api/shopmp")
+                                .loader(mContext)
+                                .params("count",currentCount)
+                                .success(new ISuccess() {
+                                    @Override
+                                    public void onSuccess(String response) {
+                                        int countNum = Integer.parseInt(tvCount.getText().toString());
+                                        countNum ++;
+                                        tvCount.setText(String.valueOf(countNum));
+                                        if (null != mCartItemListener) {
+                                            mTotalPrice = mTotalPrice + price;
+                                            final double itemTotal = countNum * price;
+                                            mCartItemListener.onItemClick(itemTotal);
+                                        }
+                                    }
+                                })
+                                .build()
+                                .post();
                     }
                 });
 
