@@ -3,7 +3,7 @@ package cn.peyton.android.fastec.example.event;
 import android.webkit.WebView;
 import android.widget.Toast;
 
-import cn.peyton.android.latte.core.fragment.delegates.web.event.Event;
+import cn.peyton.android.latte.core.delegates.web.event.Event;
 
 /**
  * <h3></h3>

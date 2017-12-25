@@ -7,7 +7,7 @@ import android.view.View;
 
 import java.util.List;
 
-import cn.peyton.android.latte.core.fragment.delegates.LatteDelegate;
+import cn.peyton.android.latte.core.delegates.LatteDelegate;
 import cn.peyton.android.latte.core.ui.recycler.ItemType;
 import cn.peyton.android.latte.core.ui.recycler.MultipleFields;
 import cn.peyton.android.latte.core.ui.recycler.MultipleItemEntity;

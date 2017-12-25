@@ -12,6 +12,7 @@ import android.support.v7.widget.ViewStubCompat;
 import android.view.View;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
 import com.joanzapata.iconify.widget.IconTextView;
 
 import java.util.ArrayList;
@@ -20,12 +21,15 @@ import java.util.WeakHashMap;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import cn.peyton.android.latte.core.fragment.delegates.bottom.BottomItemDelegate;
+import cn.peyton.android.latte.core.delegates.bottom.BottomItemDelegate;
 import cn.peyton.android.latte.core.net.RestClient;
 import cn.peyton.android.latte.core.net.callback.ISuccess;
 import cn.peyton.android.latte.core.ui.recycler.MultipleItemEntity;
+import cn.peyton.android.latte.core.util.log.LatteLogger;
 import cn.peyton.android.latte.ec.R;
 import cn.peyton.android.latte.ec.R2;
+import cn.peyton.android.latte.ec.pay.FastPay;
+import cn.peyton.android.latte.ec.pay.IAlPayResultListener;
 
 /**
  * <h3></h3>
@@ -38,7 +42,8 @@ import cn.peyton.android.latte.ec.R2;
  * 版本 1.0.0
  * </pre>
  */
-public class ShopCartDelegate extends BottomItemDelegate implements ISuccess,ICartItemListener{
+public class ShopCartDelegate extends BottomItemDelegate
+        implements ISuccess,ICartItemListener,IAlPayResultListener{
     /** 申明 ShopCartAdapter对象 */
     private ShopCartAdapter mAdapter = null;
     /** 当前总价 */
@@ -120,7 +125,7 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess,ICa
      */
     @OnClick(R2.id.tv_shop_cart_pay)
     void onClickPay() {
-
+        createOrder();//
     }
 
     @Override
@@ -187,6 +192,14 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess,ICa
                     @Override
                     public void onSuccess(String response) {
                         //进行具体支付
+                        LatteLogger.d("ORDER", response);
+                        //TODO 服务端定义
+                        final int orderId = JSON.parseObject(response).getInteger("result");
+                        FastPay.create(ShopCartDelegate.this)
+                            .setPayResultListener(ShopCartDelegate.this)
+                            .setOrderId(orderId)
+                            .beginPayDialog();
+
                     }
                 })
                 .build()
@@ -217,4 +230,28 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess,ICa
     }
 
 
+    @Override
+    public void onPaySuccess() {
+
+    }
+
+    @Override
+    public void onPaying() {
+
+    }
+
+    @Override
+    public void onPayFail() {
+
+    }
+
+    @Override
+    public void onPayCancel() {
+
+    }
+
+    @Override
+    public void onPayConnectError() {
+
+    }
 }

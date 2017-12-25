@@ -24,8 +24,11 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile project(':latte-core')
+    api fileTree(include: ['*.jar'], dir: 'libs')
     //ButterKnife依赖
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+    api project(':latte-core')
+    api files('libs/alipaySdk-20161222.jar')
+    //圆形图片
+    implementation 'de.hdodenhof:circleimageview:2.1.0'
 }

@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import cn.peyton.android.latte.core.fragment.delegates.LatteDelegate;
+import cn.peyton.android.latte.core.delegates.LatteDelegate;
 import cn.peyton.android.latte.core.net.RestClient;
 import cn.peyton.android.latte.core.net.callback.IError;
 import cn.peyton.android.latte.core.net.callback.IFailure;

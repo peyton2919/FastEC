@@ -1,7 +1,7 @@
 package cn.peyton.android.latte.core.wechat.templates;
 
-import cn.peyton.android.latte.core.fragment.activities.ProxyActivity;
-import cn.peyton.android.latte.core.fragment.delegates.LatteDelegate;
+import cn.peyton.android.latte.core.activities.ProxyActivity;
+import cn.peyton.android.latte.core.delegates.LatteDelegate;
 
 /**
  * <h3>app 注册 模板</h3>

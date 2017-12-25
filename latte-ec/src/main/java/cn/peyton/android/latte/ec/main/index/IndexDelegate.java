@@ -13,7 +13,7 @@ import android.view.View;
 import com.joanzapata.iconify.widget.IconTextView;
 
 import butterknife.BindView;
-import cn.peyton.android.latte.core.fragment.delegates.bottom.BottomItemDelegate;
+import cn.peyton.android.latte.core.delegates.bottom.BottomItemDelegate;
 import cn.peyton.android.latte.core.ui.recycler.BaseDecoration;
 import cn.peyton.android.latte.core.ui.refresh.RefreshHandler;
 import cn.peyton.android.latte.ec.R;

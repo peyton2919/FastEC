@@ -9,7 +9,7 @@ import android.view.View;
 import java.util.List;
 
 import butterknife.BindView;
-import cn.peyton.android.latte.core.fragment.delegates.LatteDelegate;
+import cn.peyton.android.latte.core.delegates.LatteDelegate;
 import cn.peyton.android.latte.core.net.RestClient;
 import cn.peyton.android.latte.core.net.callback.ISuccess;
 import cn.peyton.android.latte.core.ui.recycler.MultipleItemEntity;

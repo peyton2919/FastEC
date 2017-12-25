@@ -6,8 +6,8 @@ import android.support.v7.app.ActionBar;
 import android.widget.Toast;
 
 import cn.peyton.android.latte.core.app.Latte;
-import cn.peyton.android.latte.core.fragment.activities.ProxyActivity;
-import cn.peyton.android.latte.core.fragment.delegates.LatteDelegate;
+import cn.peyton.android.latte.core.activities.ProxyActivity;
+import cn.peyton.android.latte.core.delegates.LatteDelegate;
 import cn.peyton.android.latte.core.ui.launcher.ILauncherListener;
 import cn.peyton.android.latte.core.ui.launcher.OnLauncherFinishTag;
 import cn.peyton.android.latte.ec.main.EcBottomDelegate;

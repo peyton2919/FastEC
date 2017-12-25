@@ -11,8 +11,8 @@ import com.orhanobut.logger.Logger;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import cn.peyton.android.latte.core.fragment.delegates.web.event.Event;
-import cn.peyton.android.latte.core.fragment.delegates.web.event.EventManager;
+import cn.peyton.android.latte.core.delegates.web.event.Event;
+import cn.peyton.android.latte.core.delegates.web.event.EventManager;
 import io.reactivex.annotations.NonNull;
 import okhttp3.Interceptor;
 

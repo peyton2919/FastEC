@@ -23,4 +23,7 @@
     <string name="shopCart_d_shop_title">商品标题</string>
     <string name="shopCart_d_shop_desc">商品描述</string>
     <string name="shopCart_d_go_shopping">去购物</string>
+    <string name="fastpay_d_cancel_pay">取消支付</string>
+    <string name="personal_d_myorder">我的订单</string>
+    <string name="personal_d_allorder">全部订单</string>
 </resources>

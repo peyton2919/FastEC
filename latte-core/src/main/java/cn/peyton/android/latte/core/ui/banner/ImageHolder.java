@@ -49,5 +49,6 @@ public class ImageHolder implements Holder<String>{
                 .load(data)
                 .apply(REQUEST_OPTIONS)
                 .into(mImageView);
+
     }
 }

@@ -4,8 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
-import cn.peyton.android.latte.core.fragment.delegates.bottom.BottomItemDelegate;
-import cn.peyton.android.latte.core.fragment.delegates.web.WebDelegateImpl;
+import cn.peyton.android.latte.core.delegates.bottom.BottomItemDelegate;
+import cn.peyton.android.latte.core.delegates.web.WebDelegateImpl;
 import cn.peyton.android.latte.ec.R;
 import me.yokeyword.fragmentation.anim.DefaultHorizontalAnimator;
 import me.yokeyword.fragmentation.anim.FragmentAnimator;

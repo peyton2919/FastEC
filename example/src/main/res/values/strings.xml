@@ -2,4 +2,5 @@
     <string name="app_name">FestEC</string>
     <string name="example_delegate">example delegate</string>
     <string name="wx_d_wxhd">微信回调</string>
+    <string name="wx_d_wxpayhd">微信支付回调</string>
 </resources>

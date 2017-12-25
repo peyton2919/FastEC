@@ -13,7 +13,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import cn.peyton.android.latte.core.app.AccountManager;
 import cn.peyton.android.latte.core.app.IUserChecker;
-import cn.peyton.android.latte.core.fragment.delegates.LatteDelegate;
+import cn.peyton.android.latte.core.delegates.LatteDelegate;
 import cn.peyton.android.latte.core.ui.launcher.ILauncherListener;
 import cn.peyton.android.latte.core.ui.launcher.OnLauncherFinishTag;
 import cn.peyton.android.latte.core.ui.launcher.ScrollLaucherTag;

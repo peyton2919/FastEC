@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@android:color/white"
+    android:paddingBottom="20dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+
+        <com.joanzapata.iconify.widget.IconTextView
+            android:id="@+id/itv_dialog_pay_alipay"
+            android:textSize="50sp"
+            android:textColor="@android:color/holo_blue_bright"
+            android:text="{icon-ali-pay}"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+
+        <com.joanzapata.iconify.widget.IconTextView
+            android:id="@+id/itv_dialog_pay_wechat"
+            android:textSize="50sp"
+            android:textColor="#04b00f"
+            android:text="{fa-weixin}"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_dialog_pay_cancel"
+        android:text="@string/fastpay_d_cancel_pay"
+        android:background="@color/app_main"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:textColor="@android:color/white"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+</LinearLayout>

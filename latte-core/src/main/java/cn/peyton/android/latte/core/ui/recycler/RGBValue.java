@@ -13,6 +13,7 @@ import com.google.auto.value.AutoValue;
  */
 @AutoValue
 public abstract class RGBValue {
+
     /** 申明 红色 {指定子类实现} */
     public abstract int red();
     /** 申明 绿色 {指定子类实现} */

@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
-import cn.peyton.android.latte.core.fragment.delegates.bottom.BottomItemDelegate;
+import cn.peyton.android.latte.core.delegates.bottom.BottomItemDelegate;
 import cn.peyton.android.latte.ec.R;
 import cn.peyton.android.latte.ec.main.sort.content.ContentDelegate;
 import cn.peyton.android.latte.ec.main.sort.list.VerticalListDelegate;
