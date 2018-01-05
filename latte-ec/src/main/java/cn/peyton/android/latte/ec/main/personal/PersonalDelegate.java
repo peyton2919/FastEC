@@ -12,12 +12,15 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 import cn.peyton.android.latte.core.delegates.bottom.BottomItemDelegate;
+import cn.peyton.android.latte.core.ui.recycler.ItemType;
 import cn.peyton.android.latte.ec.R;
 import cn.peyton.android.latte.ec.R2;
+import cn.peyton.android.latte.ec.main.personal.address.AddressDelegate;
 import cn.peyton.android.latte.ec.main.personal.list.ListAdapter;
 import cn.peyton.android.latte.ec.main.personal.list.ListBean;
-import cn.peyton.android.latte.ec.main.personal.list.ListItemType;
 import cn.peyton.android.latte.ec.main.personal.order.OrderListDelegate;
+import cn.peyton.android.latte.ec.main.personal.profile.UserProfileDelegate;
+import cn.peyton.android.latte.ec.main.personal.settings.SettingsDelegate;
 
 /**
  * <h3></h3>
@@ -35,6 +38,8 @@ public class PersonalDelegate extends BottomItemDelegate{
     public static final String ORDER_TYPE = "ORDER_TYPE";
     private Bundle mArgs = null;
 
+
+    //===================================== 事件 begin ==========================================
     @BindView(R2.id.rv_personal_setting)
     RecyclerView mRvSettings = null;
 
@@ -43,6 +48,13 @@ public class PersonalDelegate extends BottomItemDelegate{
         mArgs.putString(ORDER_TYPE,"all");
         startOrderListByType();
     }
+
+    @OnClick(R2.id.img_user_avatar)
+    void onClickAvatar() {
+        getParentDelegate().getSupportDelegate().start(new UserProfileDelegate());
+    }
+
+    //===================================== 事件 end ==========================================
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -69,14 +81,16 @@ public class PersonalDelegate extends BottomItemDelegate{
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
 
         final ListBean address = new ListBean.Builder()
-                .setItemType(ListItemType.ITEM_NORMAL)
+                .setItemType(ItemType.ITEM_NORMAL)
                 .setId(1)
+                .setDelegate(new AddressDelegate())
                 .setText("收货地址")
                 .build();
 
         final ListBean system = new ListBean.Builder()
-                .setItemType(ListItemType.ITEM_NORMAL)
+                .setItemType(ItemType.ITEM_NORMAL)
                 .setId(2)
+                .setDelegate(new SettingsDelegate())
                 .setText("系统设置")
                 .build();
 
@@ -90,5 +104,6 @@ public class PersonalDelegate extends BottomItemDelegate{
 
         final ListAdapter adapter = new ListAdapter(data);
         mRvSettings.setAdapter(adapter);
+        mRvSettings.addOnItemTouchListener(new PersonalClickListener(this));
     }
 }

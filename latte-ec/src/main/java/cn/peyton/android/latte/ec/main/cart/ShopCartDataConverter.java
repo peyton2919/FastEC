@@ -8,6 +8,7 @@ import com.alibaba.fastjson.JSONObject;
 import java.util.ArrayList;
 
 import cn.peyton.android.latte.core.ui.recycler.DataConverter;
+import cn.peyton.android.latte.core.ui.recycler.ItemType;
 import cn.peyton.android.latte.core.ui.recycler.MultipleFields;
 import cn.peyton.android.latte.core.ui.recycler.MultipleItemEntity;
 
@@ -39,15 +40,15 @@ public class ShopCartDataConverter extends DataConverter{
             final double price = data.getDouble("price");
 
             final MultipleItemEntity entity = MultipleItemEntity.builder()
-                    .setField(MultipleFields.ITEM_TYPE,ShopCartItemType.SHOP_CART_ITEM)
+                    .setField(MultipleFields.ITEM_TYPE, ItemType.SHOP_CART_ITEM)
                     .setField(MultipleFields.ID,id)
                     .setField(MultipleFields.IMAGE_URL,thumb)
-                    .setField(ShopCartItemFields.TITLE,title)
-                    .setField(ShopCartItemFields.DESC,desc)
-                    .setField(ShopCartItemFields.COUNT,count)
-                    .setField(ShopCartItemFields.PRICE,price)
-                    .setField(ShopCartItemFields.IS_SELECTED,false)
-                    .setField(ShopCartItemFields.POSITION,i)
+                    .setField(MultipleFields.TITLE,title)
+                    .setField(MultipleFields.DESC,desc)
+                    .setField(MultipleFields.COUNT,count)
+                    .setField(MultipleFields.PRICE,price)
+                    .setField(MultipleFields.IS_SELECTED,false)
+                    .setField(MultipleFields.POSITION,i)
                     .build();
             dataList.add(entity);
         }

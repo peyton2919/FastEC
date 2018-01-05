@@ -16,6 +16,7 @@ import java.util.List;
 import cn.peyton.android.latte.core.app.Latte;
 import cn.peyton.android.latte.core.net.RestClient;
 import cn.peyton.android.latte.core.net.callback.ISuccess;
+import cn.peyton.android.latte.core.ui.recycler.ItemType;
 import cn.peyton.android.latte.core.ui.recycler.MultipleFields;
 import cn.peyton.android.latte.core.ui.recycler.MultipleItemEntity;
 import cn.peyton.android.latte.core.ui.recycler.MultipleRecyclerAdapter;
@@ -56,13 +57,13 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter{
         super(data);
         //初始化总价
         for (MultipleItemEntity entity : data) {
-            final double price = entity.getField(ShopCartItemFields.PRICE);
-            final int count = entity.getField(ShopCartItemFields.COUNT);
+            final double price = entity.getField(MultipleFields.PRICE);
+            final int count = entity.getField(MultipleFields.COUNT);
             final double total = price * count;
             mTotalPrice = mTotalPrice + total;
         }
         //添加购物车 item布局
-        addItemType(ShopCartItemType.SHOP_CART_ITEM, R.layout.item_shop_cart);
+        addItemType(ItemType.SHOP_CART_ITEM, R.layout.item_shop_cart);
     }
 
     public void setIsSelectedAll(boolean isSelectedAll) {
@@ -81,14 +82,14 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter{
     protected void convert(MultipleViewHolder holder, final MultipleItemEntity entity) {
         super.convert(holder, entity);
         switch (holder.getItemViewType()) {
-            case ShopCartItemType.SHOP_CART_ITEM:
+            case ItemType.SHOP_CART_ITEM:
                 //取出 所有值
                 final int id = entity.getField(MultipleFields.ID);
                 final String thumb = entity.getField(MultipleFields.IMAGE_URL);
-                final String title = entity.getField(ShopCartItemFields.TITLE);
-                final String desc = entity.getField(ShopCartItemFields.DESC);
-                final int count = entity.getField(ShopCartItemFields.COUNT);
-                final double price = entity.getField(ShopCartItemFields.PRICE);
+                final String title = entity.getField(MultipleFields.TITLE);
+                final String desc = entity.getField(MultipleFields.DESC);
+                final int count = entity.getField(MultipleFields.COUNT);
+                final double price = entity.getField(MultipleFields.PRICE);
 
 
                 //取出所有控件
@@ -112,8 +113,8 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter{
                         .into(imgThumb);
 
                 //在左侧checkbox 数据状态显示
-                entity.setField(ShopCartItemFields.IS_SELECTED,mIsSelectedAll);
-                final boolean isSelected = entity.getField(ShopCartItemFields.IS_SELECTED);
+                entity.setField(MultipleFields.IS_SELECTED,mIsSelectedAll);
+                final boolean isSelected = entity.getField(MultipleFields.IS_SELECTED);
 
                 //根据数据状态显示左侧选中状态
                 if (isSelected) {
@@ -125,13 +126,13 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter{
                 iconIsSelected.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        final boolean currentSelected = entity.getField(ShopCartItemFields.IS_SELECTED);
+                        final boolean currentSelected = entity.getField(MultipleFields.IS_SELECTED);
                         if (currentSelected) {
                             iconIsSelected.setTextColor(Color.GRAY);
-                            entity.setField(ShopCartItemFields.IS_SELECTED, false);
+                            entity.setField(MultipleFields.IS_SELECTED, false);
                         } else {
                             iconIsSelected.setTextColor(ContextCompat.getColor(Latte.getApplicationContext(),R.color.app_main));
-                            entity.setField(ShopCartItemFields.IS_SELECTED, true);
+                            entity.setField(MultipleFields.IS_SELECTED, true);
                         }
                     }
                 });
@@ -139,7 +140,7 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter{
                 iconMinus.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        final int currentCount = entity.getField(ShopCartItemFields.COUNT);
+                        final int currentCount = entity.getField(MultipleFields.COUNT);
                         if (Integer.parseInt(tvCount.getText().toString()) > 1) {
                             RestClient.builder()
                                     .url("o2o/api/shopmp")
@@ -168,7 +169,7 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter{
                 iconPlus.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        final int currentCount = entity.getField(ShopCartItemFields.COUNT);
+                        final int currentCount = entity.getField(MultipleFields.COUNT);
                         RestClient.builder()
                                 .url("o2o/api/shopmp")
                                 .loader(mContext)

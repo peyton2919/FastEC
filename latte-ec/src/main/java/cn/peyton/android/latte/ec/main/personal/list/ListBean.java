@@ -66,7 +66,7 @@ public class ListBean implements MultiItemEntity {
         return mDelegate;
     }
 
-    public CompoundButton.OnCheckedChangeListener getmOnCheckedChangeListener() {
+    public CompoundButton.OnCheckedChangeListener getOnCheckedChangeListener() {
         return mOnCheckedChangeListener;
     }
 

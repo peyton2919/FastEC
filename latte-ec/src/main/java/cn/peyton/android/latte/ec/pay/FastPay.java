@@ -150,8 +150,10 @@ public class FastPay implements View.OnClickListener{
     public void onClick(View view) {
         int id = view.getId();
         if (id == R.id.itv_dialog_pay_alipay) {
+            alPay(mOrderId);
             mDialog.cancel();
         } else if (id == R.id.itv_dialog_pay_wechat) {
+            wechatPay(mOrderId);
             mDialog.cancel();
         } else if (id == R.id.btn_dialog_pay_cancel) {
             mDialog.cancel();

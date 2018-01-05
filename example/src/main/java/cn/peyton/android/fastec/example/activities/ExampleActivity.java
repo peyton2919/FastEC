@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.widget.Toast;
 
+import cn.jpush.android.api.JPushInterface;
 import cn.peyton.android.latte.core.app.Latte;
 import cn.peyton.android.latte.core.activities.ProxyActivity;
 import cn.peyton.android.latte.core.delegates.LatteDelegate;
@@ -38,6 +39,18 @@ public class ExampleActivity extends ProxyActivity implements
         //去除状态栏
         StatusBarCompat.translucentStatusBar(this,true);
 
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        JPushInterface.onPause(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        JPushInterface.onResume(this);
     }
 
     @Override

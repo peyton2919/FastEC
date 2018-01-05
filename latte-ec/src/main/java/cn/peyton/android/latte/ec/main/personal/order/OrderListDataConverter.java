@@ -7,6 +7,7 @@ import com.alibaba.fastjson.JSONObject;
 import java.util.ArrayList;
 
 import cn.peyton.android.latte.core.ui.recycler.DataConverter;
+import cn.peyton.android.latte.core.ui.recycler.ItemType;
 import cn.peyton.android.latte.core.ui.recycler.MultipleFields;
 import cn.peyton.android.latte.core.ui.recycler.MultipleItemEntity;
 
@@ -35,12 +36,12 @@ public class OrderListDataConverter extends DataConverter{
             final String time = data.getString("time");
 
             final  MultipleItemEntity entity = MultipleItemEntity.builder()
-                    .setItemType(OrderListItemType.ITEM_ORDER_LIST)
+                    .setItemType(ItemType.ITEM_ORDER_LIST)
                     .setField(MultipleFields.ID,id)
                     .setField(MultipleFields.IMAGE_URL,thumb)
                     .setField(MultipleFields.TITLE,title)
-                    .setField(OrderItemFields.PRICE,price)
-                    .setField(OrderItemFields.TIME,time)
+                    .setField(MultipleFields.PRICE,price)
+                    .setField(MultipleFields.TIME,time)
                     .build();
             ENTITIES.add(entity);
         }

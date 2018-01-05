@@ -1,16 +1,21 @@
 package cn.peyton.android.fastec.example.app;
 
 import android.app.Application;
+import android.support.annotation.Nullable;
 
 import com.facebook.stetho.Stetho;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 
+import cn.jpush.android.api.JPushInterface;
 import cn.peyton.android.fastec.example.R;
 import cn.peyton.android.fastec.example.event.TestEvent;
 import cn.peyton.android.latte.core.app.CrashHandler;
 import cn.peyton.android.latte.core.app.Latte;
 import cn.peyton.android.latte.core.net.interceptors.DebugInterceptor;
 import cn.peyton.android.latte.core.net.rx.AddCookieInterceptor;
+import cn.peyton.android.latte.core.util.callback.CallbackManager;
+import cn.peyton.android.latte.core.util.callback.CallbackType;
+import cn.peyton.android.latte.core.util.callback.IGlobalCallback;
 import cn.peyton.android.latte.ec.database.DatabaseManager;
 import cn.peyton.android.latte.ec.icon.FontECModule;
 
@@ -49,6 +54,30 @@ public class ExapleApp extends Application {
                 .configure();
        // initStetho();
         DatabaseManager.getInstance().init(this); //初始化
+
+        //开启极光推送
+        JPushInterface.setDebugMode(true);
+        JPushInterface.init(this);
+
+        CallbackManager.getInstance()
+                .addCallback(CallbackType.TAG_OPEN_PUSH, new IGlobalCallback() {
+                    @Override
+                    public void executeCallback(@Nullable Object args) {
+                        if (JPushInterface.isPushStopped(Latte.getApplicationContext())) {
+                            //开启极光推送
+                            JPushInterface.setDebugMode(true);
+                            JPushInterface.init(Latte.getApplicationContext());
+                        }
+                    }
+                })
+                .addCallback(CallbackType.TAG_STOP_PUSH, new IGlobalCallback() {
+                    @Override
+                    public void executeCallback(@Nullable Object args) {
+                        if (!JPushInterface.isPushStopped(Latte.getApplicationContext())) {
+                            JPushInterface.stopPush(Latte.getApplicationContext());
+                        }
+                    }
+                });
     }
 
     private void initStetho() {

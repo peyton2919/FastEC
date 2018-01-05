@@ -6,6 +6,8 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.SimpleClickListener;
 
 import cn.peyton.android.latte.core.delegates.LatteDelegate;
+import cn.peyton.android.latte.core.ui.recycler.MultipleFields;
+import cn.peyton.android.latte.core.ui.recycler.MultipleItemEntity;
 import cn.peyton.android.latte.ec.detail.GoodsDetailDelegate;
 
 /**
@@ -48,7 +50,10 @@ public class IndexItemClickListener extends SimpleClickListener {
      */
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-        final GoodsDetailDelegate delegate = GoodsDetailDelegate.create();
+        final MultipleItemEntity entity = (MultipleItemEntity) baseQuickAdapter.getData().get(position);
+        final int goodsId = entity.getField(MultipleFields.ID);
+        System.out.println("【onItemClick】 " + goodsId);
+        final GoodsDetailDelegate delegate = GoodsDetailDelegate.create(goodsId);
         DELEGATE.getSupportDelegate().start(delegate);
     }
 

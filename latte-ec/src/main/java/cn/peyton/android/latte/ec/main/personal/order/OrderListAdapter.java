@@ -9,6 +9,7 @@ import com.bumptech.glide.request.RequestOptions;
 
 import java.util.List;
 
+import cn.peyton.android.latte.core.ui.recycler.ItemType;
 import cn.peyton.android.latte.core.ui.recycler.MultipleFields;
 import cn.peyton.android.latte.core.ui.recycler.MultipleItemEntity;
 import cn.peyton.android.latte.core.ui.recycler.MultipleRecyclerAdapter;
@@ -39,14 +40,14 @@ public class OrderListAdapter extends MultipleRecyclerAdapter{
      */
     protected OrderListAdapter(List<MultipleItemEntity> data) {
         super(data);
-        addItemType(OrderListItemType.ITEM_ORDER_LIST, R.layout.item_order_list);
+        addItemType(ItemType.ITEM_ORDER_LIST, R.layout.item_order_list);
     }
 
     @Override
     protected void convert(MultipleViewHolder holder, MultipleItemEntity entity) {
         super.convert(holder, entity);
         switch (holder.getItemViewType()) {
-            case OrderListItemType.ITEM_ORDER_LIST:
+            case ItemType.ITEM_ORDER_LIST:
                 final AppCompatImageView imageView = holder.getView(R.id.image_order_list);
                 final AppCompatTextView title = holder.getView(R.id.tv_order_list_title);
                 final AppCompatTextView price = holder.getView(R.id.tv_order_list_price);
@@ -54,8 +55,8 @@ public class OrderListAdapter extends MultipleRecyclerAdapter{
 
                 //
                 final String titleVal = entity.getField(MultipleFields.TITLE);
-                final String timeVal = entity.getField(OrderItemFields.TIME);
-                final double priceVal = entity.getField(OrderItemFields.PRICE);
+                final String timeVal = entity.getField(MultipleFields.TIME);
+                final double priceVal = entity.getField(MultipleFields.PRICE);
                 final String imageUrl = entity.getField(MultipleFields.IMAGE_URL);
 
                 Glide.with(mContext)

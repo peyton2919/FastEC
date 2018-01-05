@@ -9,16 +9,22 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Toast;
 
 import com.joanzapata.iconify.widget.IconTextView;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import cn.peyton.android.latte.core.delegates.bottom.BottomItemDelegate;
 import cn.peyton.android.latte.core.ui.recycler.BaseDecoration;
 import cn.peyton.android.latte.core.ui.refresh.RefreshHandler;
+import cn.peyton.android.latte.core.util.callback.CallbackManager;
+import cn.peyton.android.latte.core.util.callback.CallbackType;
+import cn.peyton.android.latte.core.util.callback.IGlobalCallback;
 import cn.peyton.android.latte.ec.R;
 import cn.peyton.android.latte.ec.R2;
 import cn.peyton.android.latte.ec.main.EcBottomDelegate;
+import cn.peyton.android.latte.ec.main.index.search.SearchDelegate;
 
 /**
  * <h3>index Delegate 类</h3>
@@ -31,7 +37,7 @@ import cn.peyton.android.latte.ec.main.EcBottomDelegate;
  * 版本 1.0.0
  * </pre>
  */
-public class IndexDelegate extends BottomItemDelegate{
+public class IndexDelegate extends BottomItemDelegate implements View.OnFocusChangeListener{
     /** 申明刷新Handler */
     private RefreshHandler mRefreshHandler = null;
     //==================  视图绑定 开始 =====================
@@ -50,7 +56,14 @@ public class IndexDelegate extends BottomItemDelegate{
     IconTextView mIndexMessage = null;
     //==================  视图绑定 结束 =====================
 
+    //=======================  控件点击事件 开始  ============================
+    @OnClick(R2.id.icon_index_scan)
+    void onClickScanQrCode() {
+        startScanWithCheck(getParentDelegate());
+    }
 
+
+    //=======================  控件点击事件 结束  ============================
     @Override
     public Object setLayout() {
 
@@ -61,6 +74,16 @@ public class IndexDelegate extends BottomItemDelegate{
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
 
         mRefreshHandler = RefreshHandler.create(mRefreshLayout,mRecyclerView,new IndexDataConverter());
+        CallbackManager.getInstance()
+                .addCallback(CallbackType.ON_SCAN, new IGlobalCallback<String>() {
+                    @Override
+                    public void executeCallback(@Nullable String args) {
+                        //TODO 处理回调
+                        Toast.makeText(getContext(), "得到的二维码是： " + args,Toast.LENGTH_LONG).show();
+                    }
+                });
+        //搜索框点击事件
+        mSearchView.setOnFocusChangeListener(this);
     }
 
     /**
@@ -101,5 +124,12 @@ public class IndexDelegate extends BottomItemDelegate{
         );
         //设置位置
         mRefreshLayout.setProgressViewOffset(true,120,300);
+    }
+
+    @Override
+    public void onFocusChange(View view, boolean hasFocus) {
+        if (hasFocus) {
+            getParentDelegate().getSupportDelegate().start(new SearchDelegate());
+        }
     }
 }

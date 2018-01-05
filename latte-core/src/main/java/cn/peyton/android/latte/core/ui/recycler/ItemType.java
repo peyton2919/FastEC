@@ -21,5 +21,23 @@ public class ItemType {
     public static final int BANNER = 4;
     /** 垂直目录集合 类型 */
     public static final int VERTICAL_MENU_LIST = 5;
+    /**  单独大图 */
+    public static final int SINGLE_BIG_IMAGE = 7;
+
+    /**  购物车 条目 */
+    public static final int SHOP_CART_ITEM = 6;
+    /**  正常 条目  */
+    public static final int ITEM_NORMAL = 20;
+    /**  头像 条目 */
+    public static final int ITEM_AVATER = 21;
+    /**  转换器 条目 */
+    public static final int ITEM_SWITCH = 22;
+    /**  订单列表 条目 */
+    public static final int ITEM_ORDER_LIST = 30;
+
+    /** 地址 条目 */
+    public static final int ITEM_ADDRESS = 40;
+    /**  查找 条目 */
+    public static final int ITEM_SEARCH = 50;
 
 }

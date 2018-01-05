@@ -13,8 +13,6 @@ package cn.peyton.android.latte.core.ui.recycler;
 public enum MultipleFields {
     /** item 类型 */
     ITEM_TYPE,
-    /** 标题 */
-    TITLE,
     /** text */
     TEXT,
     /** image链接 */
@@ -29,5 +27,27 @@ public enum MultipleFields {
     NAME,
     /** tag */
     TAG,
+
+    //OrderItemFields
+    /**  时间 */
+    TIME,
+    /**  地址 */
+    ADDRESS,
+    /** 手机 */
+    PHONE,
+
+    //ShopCartItemFields
+    /** 标题 */
+    TITLE,
+    /** 描述 */
+    DESC,
+    /** 总数 */
+    COUNT,
+    /** 价格 */
+    PRICE,
+    /** 是否选中 */
+    IS_SELECTED,
+    /** 位置 */
+    POSITION,
     ;
 }

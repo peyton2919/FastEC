@@ -24,6 +24,7 @@ import butterknife.OnClick;
 import cn.peyton.android.latte.core.delegates.bottom.BottomItemDelegate;
 import cn.peyton.android.latte.core.net.RestClient;
 import cn.peyton.android.latte.core.net.callback.ISuccess;
+import cn.peyton.android.latte.core.ui.recycler.MultipleFields;
 import cn.peyton.android.latte.core.ui.recycler.MultipleItemEntity;
 import cn.peyton.android.latte.core.util.log.LatteLogger;
 import cn.peyton.android.latte.ec.R;
@@ -87,7 +88,7 @@ public class ShopCartDelegate extends BottomItemDelegate
         //要删除的数据
         final List<MultipleItemEntity> deleteEntities = new ArrayList<>();
         for (MultipleItemEntity entity : data) {
-            final boolean isSelected = entity.getField(ShopCartItemFields.IS_SELECTED);
+            final boolean isSelected = entity.getField(MultipleFields.IS_SELECTED);
             if (isSelected) {
                 deleteEntities.add(entity);
             }
@@ -95,12 +96,12 @@ public class ShopCartDelegate extends BottomItemDelegate
         final int size = deleteEntities.size();
         for (int i = 0; i < size; i++) {
             int dataCount = data.size();
-            int currentPosition = deleteEntities.get(i).getField(ShopCartItemFields.POSITION);
+            int currentPosition = deleteEntities.get(i).getField(MultipleFields.POSITION);
             if (currentPosition < dataCount) {
                 mAdapter.remove(currentPosition);
                 for(;currentPosition < dataCount -1;currentPosition ++) {
-                    int rawItemPositon = data.get(currentPosition).getField(ShopCartItemFields.POSITION);
-                    data.get(currentPosition).setField(ShopCartItemFields.POSITION, rawItemPositon - 1);
+                    int rawItemPositon = data.get(currentPosition).getField(MultipleFields.POSITION);
+                    data.get(currentPosition).setField(MultipleFields.POSITION, rawItemPositon - 1);
                 }
             }
         }

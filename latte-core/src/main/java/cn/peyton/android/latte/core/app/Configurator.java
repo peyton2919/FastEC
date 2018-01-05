@@ -1,8 +1,10 @@
 package cn.peyton.android.latte.core.app;
 
 import android.app.Activity;
+import android.app.Application;
 import android.os.Handler;
 
+import com.blankj.utilcode.util.Utils;
 import com.joanzapata.iconify.IconFontDescriptor;
 import com.joanzapata.iconify.Iconify;
 import com.orhanobut.logger.AndroidLogAdapter;
@@ -51,9 +53,11 @@ public class Configurator {
      * 配置信息加载已经完成
      */
     public final void configure(){
+
         initIcons();//初始化字体图标
         Logger.addLogAdapter(new AndroidLogAdapter());//日志
-        LATTE_CONFIGS.put(ConfigKeys.CONFIG_READY, true);
+        LATTE_CONFIGS.put(ConfigKeys.CONFIG_READY, true); //完成项目的初始化
+        Utils.init((Application) Latte.getApplicationContext());//初始化工具类
     }
 
 
